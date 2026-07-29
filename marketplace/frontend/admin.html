@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrator Access</title>
+  <style>
+    body { margin:0; min-height:100vh; display:grid; place-items:center; background:#0f1419; color:#f0f4f8; font:16px Arial,sans-serif; }
+    main { width:min(380px, calc(100% - 32px)); padding:28px; background:#1a2847; border-radius:12px; box-sizing:border-box; }
+    h1 { margin-top:0; font-size:24px; }
+    label { display:block; margin:16px 0 6px; color:#cbd5e1; }
+    input { width:100%; box-sizing:border-box; padding:12px; border:1px solid #2d4a7c; border-radius:8px; background:#0f1419; color:#fff; }
+    button { width:100%; margin-top:20px; padding:12px; border:0; border-radius:8px; background:#3b82f6; color:#fff; font-weight:bold; cursor:pointer; }
+    #message { min-height:20px; margin-top:14px; color:#fca5a5; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Administrator Access</h1>
+    <form id="admin-login">
+      <label for="email">Email</label>
+      <input id="email" type="email" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Sign in</button>
+      <div id="message" role="alert"></div>
+    </form>
+  </main>
+  <script>
+    const form = document.getElementById('admin-login');
+    const message = document.getElementById('message');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      message.textContent = '';
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email: document.getElementById('email').value, password: document.getElementById('password').value})
+        });
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.detail || 'Login failed');
+        if (!data.user || data.user.role !== 'admin') throw new Error('Administrator access required');
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        window.location.href = '/index.html#admin-dashboard';
+      } catch (error) {
+        message.textContent = error.message;
+      }
+    });
+  </script>
+</body>
+</html>

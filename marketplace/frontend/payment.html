@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Secure Payment — Bazaar Marketplace</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap"
+        rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --bg: #0f1419;
+            --surface: #1a2847;
+            --surface2: #253a5c;
+            --border: #2d4a7c;
+            --border2: #1e3a66;
+            --ink: #f0f4f8;
+            --muted: #a0aec0;
+            --light: #cbd5e1;
+            --accent: #3b82f6;
+            --accent2: #60a5fa;
+            --accent-light: #1e3a8a;
+            --green: #10b981;
+            --green-light: #164e63;
+            --blue: #3b82f6;
+            --blue-light: #1e3a8a;
+            --yellow: #fbbf24;
+            --yellow-light: #78350f;
+            --red: #ef4444;
+            --red-light: #7f1d1d;
+            --r: 10px;
+            --r2: 16px;
+            --shadow: 0 1px 3px rgba(0, 0, 0, .06), 0 4px 16px rgba(0, 0, 0, .06);
+            --shadow2: 0 2px 8px rgba(0, 0, 0, .1), 0 8px 32px rgba(0, 0, 0, .08);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .payment-container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--surface);
+            border-radius: var(--r2);
+            box-shadow: var(--shadow2);
+            padding: 40px;
+        }
+
+        .payment-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .payment-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--ink);
+        }
+
+        .payment-header p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .order-summary {
+            background: var(--surface2);
+            border-radius: var(--r);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-row.total {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--accent);
+            padding: 12px 0;
+            margin-top: 12px;
+            border-top: 2px solid var(--border);
+        }
+
+        .summary-label {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .summary-value {
+            font-weight: 500;
+        }
+
+        .payment-details {
+            margin-bottom: 30px;
+        }
+
+        .detail-section {
+            margin-bottom: 25px;
+        }
+
+        .detail-section h3 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .detail-box {
+            background: var(--surface2);
+            border-radius: var(--r);
+            padding: 15px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .detail-box p {
+            margin: 8px 0;
+            font-size: 14px;
+        }
+
+        .detail-box strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .payment-method-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+        }
+
+        .method-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--surface);
+            color: var(--ink);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+        }
+
+        .security-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--surface);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--green);
+            color: #fff;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--r);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: var(--ink);
+            background: var(--surface);
+            transition: all 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-light);
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--r);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--accent2);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--surface2);
+            color: var(--ink);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .security-notice {
+            background: var(--green-light);
+            border: 1px solid var(--green);
+            border-radius: var(--r);
+            padding: 15px;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            font-size: 13px;
+            color: var(--green);
+        }
+
+        .security-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .error-message {
+            background: var(--red-light);
+            border: 1px solid var(--red);
+            border-radius: var(--r);
+            padding: 12px;
+            color: var(--red);
+            margin-bottom: 20px;
+            font-size: 13px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        .spinner {
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: var(--green);
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .success-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .success-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .success-subtitle {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .detail-secondary {
+            color: var(--muted);
+            margin-top: 5px;
+        }
+
+        .method-secondary {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="payment-container">
+        <a href="javascript:history.back()" class="back-link">← Back to Shopping</a>
+
+        <div class="payment-header">
+            <h1>Secure Payment</h1>
+            <p>Complete your purchase with confidence</p>
+        </div>
+
+        <div class="security-notice">
+            <div class="security-icon">Secure</div>
+        </div>
+
+        <div class="error-message" id="error-msg"></div>
+
+        <div class="order-summary">
+            <div class="summary-row">
+                <span class="summary-label">Product</span>
+                <span class="summary-value" id="product-name">Loading...</span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Quantity</span>
+                <span class="summary-value" id="product-qty">0</span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Unit Price</span>
+                <span class="summary-value">KSh <span id="product-price">0</span></span>
+            </div>
+            <div class="summary-row total">
+                <span>Total Amount</span>
+                <span>KSh <span id="total-amount">0</span></span>
+            </div>
+        </div>
+
+        <div class="payment-details">
+            <div class="detail-section">
+                <h3>Shipping Details</h3>
+                <div class="detail-box">
+                    <p><strong>Address:</strong></p>
+                    <p id="shipping-addr" class="detail-secondary">Loading...</p>
+                </div>
+            </div>
+
+            <div class="detail-section">
+                <h3>Payment Method</h3>
+                <div class="detail-box">
+                    <div class="payment-method-info">
+                        <div class="method-icon" id="method-icon">COD</div>
+                        <div>
+                            <p><strong id="method-name">Cash on Delivery</strong></p>
+                            <p id="method-desc" class="method-secondary">Pay when item is delivered</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading" id="loading-state">
+            <div class="spinner"></div>
+            <p>Processing payment...</p>
+        </div>
+
+        <div class="success-message" id="success-state">
+            <div class="success-icon">✓</div>
+            <p class="success-subtitle">Your order has been placed. Redirecting to dashboard...</p>
+        </div>
+
+        <div id="payment-form">
+            <form id="secure-payment-form" onsubmit="submitPayment(event)">
+                <!-- Additional fields for specific payment methods -->
+                <div id="method-specific-fields"></div>
+
+                <button type="submit" class="btn btn-primary" id="submit-btn">Complete Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Utility function for API calls
+        async function api(method, endpoint, body = null) {
+            const opts = {
+                method,
+                headers: { 'Content-Type': 'application/json' }
+            };
+            const token = localStorage.getItem('token');
+            if (token) {
+                opts.headers['Authorization'] = `Bearer ${token}`;
+            }
+            if (body) opts.body = JSON.stringify(body);
+            const res = await fetch(`/api${endpoint}`, opts);
+            if (!res.ok) throw new Error(await res.text());
+            return res.json();
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorEl = document.getElementById('error-msg');
+            errorEl.textContent = message;
+            errorEl.classList.add('show');
+        }
+
+        // Hide error message
+        function hideError() {
+            const errorEl = document.getElementById('error-msg');
+            errorEl.classList.remove('show');
+        }
+
+        // Show loading state
+        function setLoading(isLoading) {
+            document.getElementById('payment-form').style.display = isLoading ? 'none' : 'block';
+            document.getElementById('loading-state').style.display = isLoading ? 'block' : 'none';
+        }
+
+        // Show success state
+        function showSuccess() {
+            document.getElementById('payment-form').style.display = 'none';
+            document.getElementById('loading-state').style.display = 'none';
+            document.getElementById('success-state').classList.add('show');
+        }
+
+        // Load order data from session/URL
+        function loadOrderData() {
+            try {
+                // Get order data from sessionStorage
+                const orderData = sessionStorage.getItem('pending_order');
+                if (!orderData) {
+                    showError('Error: Order data not found. Please start over.');
+                    return null;
+                }
+
+                const order = JSON.parse(orderData);
+
+                // Validate required fields
+                if (!order.productId || !order.quantity || !order.price || !order.shippingAddress || !order.paymentMethod) {
+                    showError('Error: Invalid order data. Please start over.');
+                    return null;
+                }
+
+                // Populate order summary
+                document.getElementById('product-qty').textContent = order.quantity;
+                document.getElementById('product-price').textContent = order.price.toLocaleString();
+                const total = order.price * order.quantity;
+                document.getElementById('total-amount').textContent = total.toLocaleString();
+
+                // Populate shipping details
+                document.getElementById('shipping-addr').textContent = order.shippingAddress;
+
+                // Populate payment method
+                document.getElementById('method-name').textContent = order.paymentMethod;
+                document.getElementById('method-desc').textContent = order.methodDescription || 'Secure payment';
+                document.getElementById('method-icon').textContent = order.methodIcon || 'CARD';
+
+                // Fetch product name
+                api('GET', `/products/${order.productId}`)
+                    .then(product => {
+                        document.getElementById('product-name').textContent = product.title || product.name || 'Product';
+                    })
+                    .catch(e => console.log('Could not fetch product:', e));
+
+                return order;
+            } catch (e) {
+                showError('Error loading order data: ' + e.message);
+                return null;
+            }
+        }
+
+        // Process payment based on method
+        async function submitPayment(event) {
+            event.preventDefault();
+            hideError();
+
+            const orderData = JSON.parse(sessionStorage.getItem('pending_order'));
+            if (!orderData) {
+                showError('Order data lost. Please start over.');
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                // Create order with payment method
+                const response = await api('POST', '/orders/', {
+                    product_id: orderData.productId,
+                    quantity: orderData.quantity,
+                    shipping_address: orderData.shippingAddress,
+                    payment_method: orderData.paymentMethod
+                });
+
+                // Simulate payment processing based on method
+                await processPaymentByMethod(orderData.paymentMethod, response);
+
+                // Clear session
+                sessionStorage.removeItem('pending_order');
+
+                // Show success and redirect
+                showSuccess();
+                setTimeout(() => {
+                    window.location.href = './index.html#client-dashboard';
+                }, 3000);
+            } catch (e) {
+                setLoading(false);
+                showError('Payment failed: ' + e.message);
+            }
+        }
+
+        // Process payment based on method type
+        async function processPaymentByMethod(method, orderResponse) {
+            // Simulate different payment gateway processing
+            return new Promise((resolve) => {
+                let delay = 2000; // Default delay
+
+                switch (method) {
+                    case 'M-Pesa':
+                    case 'mpesa':
+                        delay = 2500; // M-Pesa takes a bit longer
+                        break;
+                    case 'Card Payment':
+                    case 'card':
+                        delay = 3000; // Card processing takes longer
+                        break;
+                    case 'Bitcoin':
+                    case 'bitcoin':
+                        delay = 3500; // Bitcoin requires confirmation
+                        break;
+                    default:
+                        delay = 1500; // Cash on Delivery is instant
+                }
+
+                setTimeout(() => resolve(true), delay);
+            });
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            const order = loadOrderData();
+            if (!order) {
+                document.getElementById('payment-form').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>
