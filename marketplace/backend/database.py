@@ -149,6 +149,17 @@ def init_db():
         )
     """)
 
+    # Older databases used `question`/`answer` for these columns. Keep those
+    # databases usable when the application is upgraded in place.
+    faq_columns = {row["name"] for row in c.execute("PRAGMA table_info(faqs)").fetchall()}
+    if "q" not in faq_columns:
+        c.execute("ALTER TABLE faqs ADD COLUMN q TEXT")
+    if "a" not in faq_columns:
+        c.execute("ALTER TABLE faqs ADD COLUMN a TEXT")
+    if "question" in faq_columns:
+        c.execute("UPDATE faqs SET q=question WHERE q IS NULL")
+    if "answer" in faq_columns:
+        c.execute("UPDATE faqs SET a=answer WHERE a IS NULL")
     conn.commit()
 
     existing_order_columns = {

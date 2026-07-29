@@ -526,7 +526,8 @@
 
                 // Fetch product name
                 api('GET', `/products/${order.productId}`)
-                    .then(product => {
+                    .then(data => {
+                        const product = data.product || data;
                         document.getElementById('product-name').textContent = product.title || product.name || 'Product';
                     })
                     .catch(e => console.log('Could not fetch product:', e));

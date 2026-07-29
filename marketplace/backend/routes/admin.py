@@ -160,7 +160,7 @@ def analytics(admin=Depends(require_admin)):
 @router.get('/faqs')
 def list_faqs(admin=Depends(require_admin)):
     db = get_db()
-    rows = db.execute("SELECT id, kind, q as question, a as answer, created_at FROM faqs ORDER BY created_at DESC").fetchall()
+    rows = db.execute("SELECT id, kind, q, a, q as question, a as answer, created_at FROM faqs ORDER BY created_at DESC").fetchall()
     db.close()
     return [dict(r) for r in rows]
 
@@ -177,7 +177,7 @@ def create_faq(data: dict, admin=Depends(require_admin)):
     cur.execute('INSERT INTO faqs (kind, q, a) VALUES (?, ?, ?)', (kind, q, a))
     db.commit()
     fid = cur.lastrowid
-    row = db.execute('SELECT id, kind, q as question, a as answer, created_at FROM faqs WHERE id=?', (fid,)).fetchone()
+    row = db.execute('SELECT id, kind, q, a, q as question, a as answer, created_at FROM faqs WHERE id=?', (fid,)).fetchone()
     db.close()
     return dict(row)
 
@@ -192,7 +192,7 @@ def update_faq(faq_id: int, data: dict, admin=Depends(require_admin)):
     db = get_db()
     db.execute('UPDATE faqs SET kind=?, q=?, a=? WHERE id=?', (kind, q, a, faq_id))
     db.commit()
-    row = db.execute('SELECT id, kind, q as question, a as answer, created_at FROM faqs WHERE id=?', (faq_id,)).fetchone()
+    row = db.execute('SELECT id, kind, q, a, q as question, a as answer, created_at FROM faqs WHERE id=?', (faq_id,)).fetchone()
     db.close()
     if not row:
         raise HTTPException(status_code=404, detail='FAQ not found')
