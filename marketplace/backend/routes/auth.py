@@ -70,9 +70,12 @@ def login(req: LoginRequest, request: Request):
     user = db.execute("SELECT * FROM users WHERE email=?", (req.email,)).fetchone()
     db.close()
 
-    if not user or not verify_password(req.password, user["password_hash"]):
+    if not user:
         _record_failed_login(login_key)
-        raise HTTPException(status_code=401, detail="Invalid email or password")
+        raise HTTPException(status_code=401, detail="Email address not found")
+    if not verify_password(req.password, user["password_hash"]):
+        _record_failed_login(login_key)
+        raise HTTPException(status_code=401, detail="Incorrect password")
     if not user["is_active"]:
         raise HTTPException(status_code=403, detail="Account suspended")
 

@@ -1411,6 +1411,23 @@
       }
     }
   </style>
+  <style>
+    /* Storefront refresh — tuned to the supplied reference UI */
+    :root { --bg:#f6f6f4; --surface:#fff; --surface2:#f0f0ed; --border:#e2e2de; --border2:#cfcfca; --ink:#1d1d1b; --muted:#777873; --light:#a6a7a1; --accent:#20201e; --accent2:#4b4b46; --accent-light:#ecece8; --green:#637044; --r:2px; --r2:3px; --shadow:0 1px 4px rgba(24,24,20,.08); --shadow2:0 10px 30px rgba(24,24,20,.12); }
+    body { background:var(--bg); color:var(--ink); font-size:13px; letter-spacing:.01em; } h1,h2,h3 { font-family:'DM Sans',sans-serif; } .inline-error { display:none; background:#fff1f0; border:1px solid #df8f88; color:#a53a32; padding:10px 11px; margin:4px 0 14px; border-radius:2px; font-size:12px; line-height:1.4; } .inline-error.show { display:block; }
+    #main-nav { display:block!important; background:#fff; border-bottom:1px solid var(--border); box-shadow:none; } .nav-inner { max-width:1240px; height:68px; padding:0 28px; gap:28px; } .logo { font-family:'DM Sans',sans-serif; text-transform:lowercase; font-size:21px; letter-spacing:-.06em; color:var(--ink); } .logo span { color:#9a9b93; } .nav-search { max-width:430px; } .nav-search input { background:#f7f7f5; border:1px solid var(--border); border-radius:2px; padding:11px 14px 11px 38px; } .nav-links { gap:2px; } .nav-btn { border-radius:2px; color:#42433e; font-size:12px; text-transform:uppercase; letter-spacing:.08em; } .nav-btn.primary { background:var(--ink); border-radius:2px; }
+    .container { max-width:1240px; padding:0 28px; } .page { animation:none; } #page-home { background:var(--bg); }
+    .storefront { max-width:1240px; margin:0 auto; padding:22px 28px 64px; } .storefront .crumbs { color:#8a8b84; font-size:11px; margin-bottom:20px; } .storefront .crumbs span { color:var(--ink); } .storefront-hero { background:#e7e6e1; min-height:286px; display:grid; grid-template-columns:1fr 1fr; overflow:hidden; } .storefront-hero-copy { padding:46px 48px; position:relative; z-index:1; } .eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:10px; font-weight:700; color:#6b6d65; margin-bottom:14px; } .storefront-hero h1 { font-size:clamp(31px,4vw,50px); line-height:.98; letter-spacing:-.06em; max-width:380px; margin-bottom:18px; } .storefront-hero p { max-width:310px; color:#696a64; line-height:1.55; margin-bottom:23px; } .storefront-btn { display:inline-flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; border:0; padding:12px 22px; text-transform:uppercase; letter-spacing:.12em; font-size:10px; font-weight:700; cursor:pointer; }
+    .home-shell { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) 285px; align-items:start; } .home-shell .storefront { max-width:none; margin:0; } .home-login { background:#fff; border:1px solid var(--border); margin:42px 28px 0 0; padding:22px 20px; position:sticky; top:90px; } .home-login h2 { font-size:20px; letter-spacing:-.04em; margin:0 0 6px; } .home-login p { color:var(--muted); line-height:1.45; font-size:12px; margin:0 0 20px; } .home-login .form-group { margin-bottom:12px; } .home-login .form-label { font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px; } .home-login .form-input { padding:10px 11px; border-radius:2px; background:#fafaf8; font-size:12px; } .home-login .btn { width:100%; border-radius:2px; padding:11px 12px; font-size:11px; text-transform:uppercase; letter-spacing:.1em; } .home-login .login-note { text-align:center; color:var(--muted); font-size:11px; margin:16px 0 0; } .home-login .login-note a { color:var(--ink); text-decoration:underline; cursor:pointer; }
+    .storefront-hero-art { position:relative; background:linear-gradient(145deg,#d7d8d4,#bfc1bd); overflow:hidden; } .storefront-hero-art:before,.storefront-hero-art:after { content:''; position:absolute; background:#f6f6f4; box-shadow:0 10px 20px rgba(0,0,0,.08); transform:rotate(-12deg); } .storefront-hero-art:before { width:210px; height:180px; left:18%; top:28%; border-radius:45% 55% 8% 8%; } .storefront-hero-art:after { width:155px; height:210px; left:55%; top:18%; background:#252727; transform:rotate(15deg); border-radius:25% 25% 4% 4%; }
+    .category-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(82px,1fr)); gap:12px; padding:22px 0 28px; border-bottom:1px solid var(--border); } .category-tile { text-align:center; color:#42433e; cursor:pointer; font-size:11px; } .category-tile i { display:flex; height:47px; width:47px; border-radius:50%; background:#e9e9e5; margin:0 auto 8px; align-items:center; justify-content:center; font-style:normal; color:#555650; } .category-tile i svg { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+    .section-bar { display:flex; align-items:end; justify-content:space-between; margin:32px 0 15px; } .section-bar h2 { font-size:20px; letter-spacing:-.04em; margin:0; } .section-bar a { color:#71736c; text-transform:uppercase; letter-spacing:.12em; font-size:10px; cursor:pointer; } .mini-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; } .mini-product { background:#fff; border:1px solid var(--border); min-width:0; cursor:pointer; } .mini-product .mini-img { height:145px; background:#e8e8e4; overflow:hidden; } .mini-product .mini-img img { width:100%; height:100%; object-fit:cover; filter:saturate(.72); transition:transform .25s; } .mini-product:hover .mini-img img { transform:scale(1.04); } .mini-product .mini-body { padding:10px 11px 12px; } .mini-product small { color:#8b8c85; text-transform:uppercase; letter-spacing:.08em; font-size:9px; } .mini-product h3 { font-size:12px; margin:5px 0 8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } .mini-price { font-weight:700; font-size:13px; } .mini-price del { color:#a0a19b; font-weight:400; margin-left:5px; font-size:11px; }
+    .deal-banner { margin-top:34px; background:#252a2d; color:#fff; min-height:155px; padding:30px 36px; display:flex; align-items:center; justify-content:space-between; } .deal-banner h2 { font-size:25px; letter-spacing:-.05em; margin:5px 0; } .deal-banner p { color:#bfc3c0; max-width:390px; margin:0; } .deal-banner .storefront-btn { background:#fff; color:var(--ink); } footer { background:#252a2d!important; border-top:0!important; color:#fff; padding:38px 16px!important; margin-top:0!important; } footer h3 { font-size:18px; } footer strong { font-size:11px; text-transform:uppercase; letter-spacing:.1em; } footer p,footer a { color:#a9afad!important; }
+    .shop-page { background:var(--bg); } .shop-page .container { padding-top:30px; padding-bottom:70px; } .shop-page .shop-heading-row { display:flex; align-items:end; gap:14px; border-bottom:1px solid var(--border); padding-bottom:18px; margin-bottom:18px; } .shop-page .section-title { font-size:30px; letter-spacing:-.06em; margin:0; } .shop-page .shop-count { font-size:11px; color:var(--muted); margin-bottom:5px; } .shop-page .shop-heading-actions { margin-left:auto; } .shop-page .select-compact { border:1px solid var(--border); border-radius:2px; background:#fff; padding:9px 12px; color:var(--ink); font-size:11px; } .shop-page .filters { gap:7px; margin-bottom:14px; } .shop-page .filter-chip { background:#fff; border:1px solid var(--border); border-radius:2px; padding:8px 13px; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#64655f; } .shop-page .filter-chip:hover,.shop-page .filter-chip.active { background:var(--ink); border-color:var(--ink); color:#fff; } .shop-page .price-filter { background:#fff; border:1px solid var(--border); padding:10px 12px; margin-bottom:22px; gap:8px; } .shop-page .price-label { font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); } .shop-page .price-input { width:95px; border:0; border-bottom:1px solid var(--border2); border-radius:0; background:transparent; padding:5px 3px; font-size:11px; } .shop-page .product-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; } .shop-page .product-card { background:#fff; border:1px solid var(--border); border-radius:2px; box-shadow:none; } .shop-page .product-card:hover { transform:translateY(-3px); box-shadow:var(--shadow2); } .shop-page .product-card .img-wrap { aspect-ratio:1/1; background:#e9e9e5; } .shop-page .product-card .img-wrap img { filter:saturate(.78); } .shop-page .product-card .wish-btn { top:9px; right:9px; width:29px; height:29px; border-radius:50%; font-size:13px; color:var(--ink); } .shop-page .product-card .card-body { padding:12px; } .shop-page .product-card .category { color:#898a83; font-size:9px; letter-spacing:.1em; margin-bottom:6px; } .shop-page .product-card h3 { font-size:13px; font-weight:600; margin-bottom:8px; } .shop-page .product-card .price { color:var(--ink); font-family:'DM Sans',sans-serif; font-size:14px; } .shop-page .product-card .meta { border-top:1px solid #eeeeeb; padding-top:9px; margin-top:10px; font-size:10px; } .shop-page .stars { color:#9b7c38; } .shop-page .pagination-row { margin-top:28px; } .shop-page .pagination-row .btn { border-radius:2px; font-size:10px; padding:8px 12px; }
+    .shop-category-nav { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; } .shop-category-nav button { border:1px solid var(--border); background:#fff; color:#555650; border-radius:2px; padding:9px 13px; cursor:pointer; font:500 10px 'DM Sans',sans-serif; text-transform:uppercase; letter-spacing:.08em; transition:all .15s; } .shop-category-nav button:hover { background:var(--ink); border-color:var(--ink); color:#fff; transform:translateY(-1px); }
+    @media(max-width:900px) { .home-shell { grid-template-columns:1fr; } .home-login { position:static; margin:0 16px 30px; order:-1; } .shop-page .product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media(max-width:760px) { .nav-inner{padding:0 16px;gap:12px}.nav-links .nav-btn:first-child{display:none}.nav-search{min-width:0}.storefront{padding:18px 16px 40px}.storefront-hero{grid-template-columns:1fr}.storefront-hero-copy{padding:34px 25px}.storefront-hero-art{min-height:170px}.category-row{grid-template-columns:repeat(4,1fr);row-gap:18px}.mini-grid{grid-template-columns:repeat(2,1fr)}.mini-product .mini-img{height:120px}.shop-page .container{padding-left:16px;padding-right:16px}.shop-page .shop-heading-row{align-items:start;flex-wrap:wrap}.shop-page .shop-heading-actions{width:100%;margin-left:0}.shop-page .select-compact{width:100%}.shop-page .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.shop-page .product-card .card-body{padding:10px}.deal-banner{display:block;padding:25px}.deal-banner .storefront-btn{margin-top:18px} }
+  </style>
 </head>
 
 <body>
@@ -1438,36 +1455,41 @@
 
     <!-- ── HOME ── -->
     <div class="page" id="page-home">
-      <div class="auth-wrap" style="flex-direction: column; text-align: center;">
-        <h1 style="font-size: 48px; margin-bottom: 40px; color: var(--accent); font-family: 'Playfair Display', serif;">
-          Bazaar Marketplace</h1>
-
-        <div class="auth-card" style="width: 100%; max-width: 400px;">
-          <div style="display: flex; flex-direction: column; gap: 12px;">
-            <button class="btn btn-primary btn-lg" onclick="setRoleAndNavigate('client')">Login as Buyer</button>
-            <button class="btn btn-outline btn-lg" onclick="setRoleAndNavigate('seller')">Login as Seller</button>
-
-            <div
-              style="margin: 20px 0; display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 13px;">
-              <hr style="flex: 1; border: none; border-top: 1px solid var(--border);"> OR
-              <hr style="flex: 1; border: none; border-top: 1px solid var(--border);">
-            </div>
-
-            <button class="btn btn-social" onclick="socialLogin('google')">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" width="18"
-                style="margin-right:10px"> Continue with Google
-            </button>
-            <button class="btn btn-social apple" onclick="socialLogin('apple')">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" width="18"
-                style="margin-right:10px; filter: invert(1);"> Continue with Apple
-            </button>
-          </div>
+      <div class="home-shell">
+      <main class="storefront">
+        <div class="crumbs">Home <span>/ New arrivals</span></div>
+        <section class="storefront-hero">
+          <div class="storefront-hero-copy"><div class="eyebrow">The new season edit</div><h1>Limited Time Offer!<br>Up to 50% Off</h1><p>Fresh everyday essentials, thoughtfully selected for your wardrobe and home.</p><button class="storefront-btn" onclick="navigate('shop')">Shop the sale</button></div>
+          <div class="storefront-hero-art" aria-label="Featured clothing collection"></div>
+        </section>
+        <div class="category-row">
+          <div class="category-tile" onclick="navigate('shop')"><i><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></i>All products</div><div class="category-tile" onclick="setCategory('Clothing')"><i><svg viewBox="0 0 24 24"><path d="M8 5 4 8l2 4 2-1v8h8v-8l2 1 2-4-4-3-2 2h-4z"/></svg></i>Clothing</div><div class="category-tile" onclick="setCategory('Shoes')"><i><svg viewBox="0 0 24 24"><path d="M4 16c2 0 4-2 5-6l3 3c2 2 5 2 8 3v3H4z"/><path d="M8 16h8"/></svg></i>Shoes</div><div class="category-tile" onclick="setCategory('Home')"><i><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10M9 20v-6h6v6"/></svg></i>Home</div><div class="category-tile" onclick="setCategory('Kitchen')"><i><svg viewBox="0 0 24 24"><path d="M5 3v8M8 3v8M5 7h3M6.5 11v10M15 3v18M15 3c4 2 4 6 0 8"/></svg></i>Kitchen</div><div class="category-tile" onclick="setCategory('Electronics')"><i><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg></i>Electronics</div><div class="category-tile" onclick="setCategory('Beauty')"><i><svg viewBox="0 0 24 24"><path d="M9 4h6v4H9zM7 8h10v12H7zM10 4V2h4v2"/></svg></i>Beauty</div><div class="category-tile" onclick="setCategory('Sports')"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M5 8h14M5 16h14M12 4v16"/></svg></i>Sports</div><div class="category-tile" onclick="setCategory('Books')"><i><svg viewBox="0 0 24 24"><path d="M5 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H5zM19 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/></svg></i>Books</div><div class="category-tile" onclick="setCategory('Accessories')"><i><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="4"/><path d="m12 12 7 7M14 5l5 5"/></svg></i>Accessories</div><div class="category-tile"><i><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg></i>Kids</div><div class="category-tile"><i><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></i>More</div>
         </div>
+        <div class="section-bar"><h2>Flash Sale</h2><a onclick="navigate('shop')">View all products →</a></div>
+        <div class="mini-grid">
+          <div class="mini-product" onclick="navigate('shop')"><div class="mini-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80" alt="Everyday cotton tee"></div><div class="mini-body"><small>Clothing</small><h3>Everyday Cotton Tee</h3><div class="mini-price">KSh 1,250 <del>KSh 2,500</del></div></div></div>
+          <div class="mini-product" onclick="navigate('shop')"><div class="mini-img"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=500&q=80" alt="Running shoes"></div><div class="mini-body"><small>Sportswear</small><h3>Urban Runner Sneakers</h3><div class="mini-price">KSh 4,800 <del>KSh 6,200</del></div></div></div>
+          <div class="mini-product" onclick="navigate('shop')"><div class="mini-img"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=500&q=80" alt="Skincare set"></div><div class="mini-body"><small>Beauty</small><h3>Daily Glow Skincare Set</h3><div class="mini-price">KSh 2,100 <del>KSh 3,400</del></div></div></div>
+          <div class="mini-product" onclick="navigate('shop')"><div class="mini-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=500&q=80" alt="Desk lamp"></div><div class="mini-body"><small>Home</small><h3>Minimal Desk Lamp</h3><div class="mini-price">KSh 3,650 <del>KSh 4,500</del></div></div></div>
+        </div>
+        <div class="section-bar"><h2>Today's For You</h2><a onclick="navigate('shop')">Explore collection →</a></div>
+        <div class="product-grid" id="home-products"></div>
+        <section class="deal-banner"><div><div class="eyebrow" style="color:#a9afad">Bazaar editorial</div><h2>Good design should feel effortless.</h2><p>Shop beyond boundaries with independent sellers and beautifully useful things.</p></div><button class="storefront-btn" onclick="navigate('shop')">Discover more</button></section>
+      </main>
+      <aside class="home-login">
+        <div class="eyebrow">Welcome back</div><h2>Sign in to Bazaar</h2><p>Save favorites, track orders, and shop from independent sellers.</p>
+        <form onsubmit="event.preventDefault();homeLogin()">
+          <div class="form-group"><label class="form-label" for="home-email">Email</label><input class="form-input" id="home-email" type="email" placeholder="you@email.com" required></div>
+          <div class="form-group"><label class="form-label" for="home-password">Password</label><input class="form-input" id="home-password" type="password" placeholder="Your password" required></div>
+          <div id="home-error" class="inline-error" role="alert"></div><button class="btn btn-primary" type="submit">Sign in</button>
+        </form>
+        <div class="login-note">New here? <a onclick="navigate('auth');renderAuthPage('register')">Create an account</a></div>
+      </aside>
       </div>
     </div>
 
     <!-- ── SHOP ── -->
-    <div class="page" id="page-shop">
+    <div class="page shop-page" id="page-shop">
       <div class="container section">
         <div class="shop-heading-row">
           <h2 class="section-title">Marketplace</h2>
@@ -1480,6 +1502,9 @@
               <option value="popular">Most Popular</option>
             </select>
           </div>
+        </div>
+        <div class="shop-category-nav" aria-label="Shop categories">
+          <button onclick="setCategory('')">All products</button><button onclick="setCategory('Clothing')">Clothing</button><button onclick="setCategory('Shoes')">Shoes</button><button onclick="setCategory('Home')">Home</button><button onclick="setCategory('Kitchen')">Kitchen</button><button onclick="setCategory('Electronics')">Electronics</button><button onclick="setCategory('Beauty')">Beauty</button><button onclick="setCategory('Sports')">Sports</button><button onclick="setCategory('Books')">Books</button><button onclick="setCategory('Accessories')">Accessories</button><button onclick="setCategory('Kids')">Kids</button>
         </div>
         <div class="filters" id="category-filters"></div>
         <div id="price-filter" class="price-filter">
@@ -1672,7 +1697,7 @@
       if (body) opts.body = JSON.stringify(body);
       const res = await fetch(API + path, opts);
       const data = await res.json();
-      if (!res.ok) throw new Error(data.detail || 'Request failed');
+      if (!res.ok) { const error = new Error(data.detail || 'Request failed'); error.status = res.status; throw error; }
       return data;
     }
 
@@ -1730,11 +1755,7 @@
     function renderNav() {
       const links = document.getElementById('nav-links');
       const nav = document.getElementById('main-nav');
-      if (state.currentPage === 'home' && !state.user) {
-        nav.style.display = 'none';
-      } else {
-        nav.style.display = 'block';
-      }
+      nav.style.display = 'block';
 
       let html = `<button class="nav-btn" onclick="navigate('shop')">Shop</button>`;
       if (!state.user) {
@@ -1784,7 +1805,7 @@
 
       html += `<div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="auth-email" placeholder="you@email.com"></div>
     <div class="form-group"><label class="form-label" for="auth-password">Password</label><div style="position:relative"><input class="form-input" style="padding-right:72px" type="password" id="auth-password" placeholder="••••••••" autocomplete="${mode === 'login' ? 'current-password' : 'new-password'}"><button type="button" id="auth-password-toggle" aria-label="Show password" onclick="togglePasswordVisibility('auth-password', this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-weight:600">Show</button></div></div>
-    <button class="btn btn-primary" style="width:100%;margin-bottom:16px" onclick="submitAuth('${mode}')">${mode === 'login' ? 'Sign In' : 'Create Account'}</button>
+    <div id="auth-error" class="inline-error" role="alert"></div><button class="btn btn-primary" style="width:100%;margin-bottom:16px" onclick="submitAuth('${mode}')">${mode === 'login' ? 'Sign In' : 'Create Account'}</button>
     <p style="text-align:center;font-size:13px;color:var(--muted)">
       ${mode === 'login' ? `No account? <a href="#" onclick="renderAuthPage('register')" style="color:var(--accent)">Sign up</a>` : `Have account? <a href="#" onclick="renderAuthPage('login')" style="color:var(--accent)">Sign in</a>`}
     </p>`;
@@ -1799,6 +1820,14 @@
       input.type = isHidden ? 'text' : 'password';
       button.textContent = isHidden ? 'Hide' : 'Show';
       button.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    }
+
+    function showLoginError(id, error) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const message = String(error?.message || error || 'Unable to sign in');
+      el.textContent = /email address not found/i.test(message) ? 'Email address not found. Check your email or create an account.' : /incorrect password/i.test(message) ? 'Incorrect password. Please try again.' : /too many failed/i.test(message) ? message : 'We could not sign you in. Check your email and password and try again.';
+      el.classList.add('show');
     }
 
     function setRole(role, mode) {
@@ -1838,7 +1867,22 @@
         if (data.user.role === 'admin') navigate('admin-dashboard');
         else if (data.user.role === 'seller') navigate('seller-dashboard');
         else navigate('client-dashboard');
-      } catch (e) { toast(e.message, 'error'); }
+      } catch (e) { if (mode === 'login') showLoginError('auth-error', e); toast(e.message, 'error'); }
+    }
+
+    async function homeLogin() {
+      const email = document.getElementById('home-email').value.trim();
+      const password = document.getElementById('home-password').value;
+      document.getElementById('home-error')?.classList.remove('show');
+      try {
+        const data = await api('POST', '/auth/login', { email, password });
+        state.token = data.token; state.user = data.user;
+        localStorage.setItem('token', data.token); localStorage.setItem('user', JSON.stringify(data.user));
+        toast(`Welcome, ${data.user.name}!`);
+        if (data.user.role === 'admin') navigate('admin-dashboard');
+        else if (data.user.role === 'seller') navigate('seller-dashboard');
+        else navigate('client-dashboard');
+      } catch (e) { showLoginError('home-error', e); toast(e.message, 'error'); }
     }
 
     function logout() {
@@ -1879,7 +1923,10 @@
         document.getElementById('home-products').innerHTML =
           data.products.length ? data.products.map(p => productCard(p)).join('') :
             `<div class="empty-state"><div class="icon">Store</div><h3>No listings yet</h3><p>Be the first to list something!</p></div>`;
-      } catch (e) { document.getElementById('home-products').innerHTML = `<p style="color:var(--muted)">Start your backend to load products.</p>`; }
+      } catch (e) {
+        // Keep the curated storefront visible when the API is offline.
+        document.getElementById('home-products').innerHTML = `<div class="empty-state" style="grid-column:1/-1;padding:28px 0"><p style="color:var(--muted)">More products are being added by independent sellers.</p></div>`;
+      }
     }
 
     function handleSearch(v) { shopState.search = v; if (state.currentPage === 'shop') loadShop(); }
@@ -1917,7 +1964,9 @@
     }
 
     function setCategory(cat) {
-      shopState.category = cat; shopState.page = 1; loadShop();
+      shopState.category = cat; shopState.page = 1;
+      if (state.currentPage !== 'shop') { navigate('shop'); return; }
+      loadShop();
     }
 
     async function openProduct(id) {
@@ -2412,7 +2461,7 @@
       </div>
       <div class="form-group"><label class="form-label">Category *</label>
         <select class="form-input" id="pf-category">
-          ${['Electronics', 'Clothing', 'Books', 'Home & Garden', 'Sports', 'Vehicles', 'Food', 'Services', 'Art', 'Other'].map(c => `<option ${existing?.category === c ? 'selected' : ''}>${c}</option>`).join('')}
+          ${['Electronics', 'Clothing', 'Shoes', 'Home', 'Home & Garden', 'Kitchen', 'Beauty', 'Sports', 'Books', 'Accessories', 'Kids', 'Vehicles', 'Food', 'Services', 'Art', 'Other'].map(c => `<option ${existing?.category === c ? 'selected' : ''}>${c}</option>`).join('')}
         </select>
       </div>
       <div class="form-group"><label class="form-label">Image URL</label><input class="form-input" id="pf-image" value="${escapeHtml(existing?.image_url || '')}" placeholder="https://..."></div>

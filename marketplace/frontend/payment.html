@@ -308,6 +308,24 @@
             display: block;
         }
 
+        .error-actions {
+            display: none;
+            gap: 8px;
+            margin: -10px 0 20px;
+        }
+
+        .error-actions.show { display: flex; }
+        .error-actions button, .error-actions a {
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--ink);
+            border-radius: var(--r);
+            padding: 9px 12px;
+            font: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
         .loading {
             display: none;
             text-align: center;
@@ -386,6 +404,10 @@
         </div>
 
         <div class="error-message" id="error-msg"></div>
+        <div class="error-actions" id="error-actions">
+            <button type="button" onclick="location.reload()">Try again</button>
+            <a href="./index.html">Return to shop</a>
+        </div>
 
         <div class="order-summary">
             <div class="summary-row">
@@ -471,12 +493,14 @@
             const errorEl = document.getElementById('error-msg');
             errorEl.textContent = message;
             errorEl.classList.add('show');
+            document.getElementById('error-actions').classList.add('show');
         }
 
         // Hide error message
         function hideError() {
             const errorEl = document.getElementById('error-msg');
             errorEl.classList.remove('show');
+            document.getElementById('error-actions').classList.remove('show');
         }
 
         // Show loading state
