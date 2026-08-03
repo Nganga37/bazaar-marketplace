@@ -173,10 +173,10 @@ def init_db():
 
     # Insert default payment methods if not exist
     payment_methods = [
-        ("Cash on Delivery", "Pay when item is delivered", "💵", 1),
-        ("M-Pesa", "Mobile money payment via M-Pesa", "📱", 1),
-        ("Card Payment", "Visa, Mastercard, and other cards", "💳", 1),
-        ("Bitcoin", "Cryptocurrency payment with Bitcoin", "₿", 1),
+        ("Cash on Delivery", "Pay when item is delivered", "ðŸ’µ", 1),
+        ("M-Pesa", "Mobile money payment via M-Pesa", "ðŸ“±", 1),
+        ("Card Payment", "Visa, Mastercard, and other cards", "ðŸ’³", 1),
+        ("Bitcoin", "Cryptocurrency payment with Bitcoin", "â‚¿", 1),
     ]
     existing_methods = {row[0] for row in c.execute("SELECT name FROM payment_methods").fetchall()}
     for method_name, desc, icon, is_active in payment_methods:
@@ -206,7 +206,7 @@ def init_db():
                 (hash_password(admin_password), configured_admin["id"]),
             )
             conn.commit()
-        elif not c.execute("SELECT id FROM users WHERE role='admin'").fetchone():
+        elif not c.execute("SELECT id FROM users WHERE role='admin' AND is_active=1").fetchone():
             c.execute("""
                 INSERT INTO users (name, email, password_hash, role)
                 VALUES (?, ?, ?, ?)

@@ -19,3 +19,6 @@ env/
 .idea/
 .DS_Store
 Thumbs.db
+
+marketplace/backend/.env
+!marketplace/backend/.env.example
