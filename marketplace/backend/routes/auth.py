@@ -1,5 +1,11 @@
 from collections import defaultdict, deque
 from time import monotonic
+from datetime import datetime, timedelta, timezone
+from email.message import EmailMessage
+import hashlib
+import os
+import secrets
+import smtplib
 from fastapi import APIRouter, HTTPException, Depends, Request
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from database import get_db
@@ -36,6 +42,44 @@ class RegisterRequest(BaseModel):
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str = Field(min_length=1, max_length=128)
+
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+class ResetPasswordRequest(BaseModel):
+    token: str = Field(min_length=32, max_length=200)
+    password: str = Field(min_length=12, max_length=128)
+
+
+def _send_reset_email(email: str, name: str, token: str):
+    host = os.getenv("SMTP_HOST")
+    username = os.getenv("SMTP_USERNAME")
+    password = os.getenv("SMTP_PASSWORD")
+    sender = os.getenv("SMTP_FROM", username or "")
+    if not host or not sender:
+        raise RuntimeError("SMTP_HOST and SMTP_FROM must be configured")
+
+    base_url = os.getenv("PASSWORD_RESET_URL", "http://127.0.0.1:8000")
+    reset_url = f"{base_url.rstrip('/')}?reset_token={token}"
+    message = EmailMessage()
+    message["Subject"] = "Reset your Bazaar password"
+    message["From"] = sender
+    message["To"] = email
+    message.set_content(
+        f"Hello {name},\n\n"
+        f"Use this link to reset your Bazaar password. It expires in 30 minutes:\n{reset_url}\n\n"
+        "If you did not request this, you can ignore this email."
+    )
+
+    port = int(os.getenv("SMTP_PORT", "587"))
+    with smtplib.SMTP(host, port, timeout=15) as smtp:
+        smtp.ehlo()
+        if os.getenv("SMTP_USE_TLS", "true").lower() == "true":
+            smtp.starttls()
+            smtp.ehlo()
+        if username and password:
+            smtp.login(username, password)
+        smtp.send_message(message)
 
 
 @router.post("/register")
@@ -84,6 +128,52 @@ def login(req: LoginRequest, request: Request):
         "id": user["id"], "name": user["name"],
         "email": user["email"], "role": user["role"]
     }}
+
+
+@router.post("/forgot-password")
+def forgot_password(req: ForgotPasswordRequest):
+    # Always use the same response for known and unknown emails.
+    db = get_db()
+    user = db.execute(
+        "SELECT id, name, email FROM users WHERE email=? AND is_active=1", (req.email,)
+    ).fetchone()
+    if user:
+        raw_token = secrets.token_urlsafe(48)
+        token_hash = hashlib.sha256(raw_token.encode()).hexdigest()
+        db.execute("DELETE FROM password_reset_tokens WHERE user_id=? OR expires_at < CURRENT_TIMESTAMP", (user["id"],))
+        db.execute(
+            "INSERT INTO password_reset_tokens (user_id, token_hash, expires_at) VALUES (?, ?, ?)",
+            (user["id"], token_hash, (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat()),
+        )
+        db.commit()
+        db.close()
+        try:
+            _send_reset_email(user["email"], user["name"], raw_token)
+        except (OSError, smtplib.SMTPException, RuntimeError) as exc:
+            # Do not expose account existence or SMTP details to the client.
+            print(f"Password reset email failed: {exc}")
+            raise HTTPException(status_code=503, detail="Password reset email is not configured")
+    db.close()
+    return {"message": "If an account exists for that email, a reset link has been sent."}
+
+
+@router.post("/reset-password")
+def reset_password(req: ResetPasswordRequest):
+    token_hash = hashlib.sha256(req.token.encode()).hexdigest()
+    db = get_db()
+    record = db.execute(
+        "SELECT id, user_id FROM password_reset_tokens WHERE token_hash=? AND used_at IS NULL AND expires_at > CURRENT_TIMESTAMP",
+        (token_hash,),
+    ).fetchone()
+    if not record:
+        db.close()
+        raise HTTPException(status_code=400, detail="Reset link is invalid or expired")
+    db.execute("UPDATE users SET password_hash=? WHERE id=?", (hash_password(req.password), record["user_id"]))
+    db.execute("UPDATE password_reset_tokens SET used_at=CURRENT_TIMESTAMP WHERE id=?", (record["id"],))
+    db.execute("DELETE FROM password_reset_tokens WHERE user_id=? AND id!=?", (record["user_id"], record["id"]))
+    db.commit()
+    db.close()
+    return {"message": "Password reset successfully. You can now sign in."}
 
 
 @router.get("/me")

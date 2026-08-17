@@ -23,7 +23,7 @@ def get_payment_methods():
     methods = db.execute("""
         SELECT id, name, description, icon
         FROM payment_methods
-        WHERE is_active = 1
+        WHERE is_active = 1 AND name != 'Bitcoin'
         ORDER BY id
     """).fetchall()
     db.close()
@@ -51,11 +51,9 @@ def place_order(order: OrderCreate, current_user=Depends(get_current_user)):
         'Cash on Delivery': 'cash_on_delivery',
         'M-Pesa': 'mpesa',
         'Card Payment': 'card',
-        'Bitcoin': 'bitcoin',
         'cash_on_delivery': 'cash_on_delivery',
         'mpesa': 'mpesa',
         'card': 'card',
-        'bitcoin': 'bitcoin'
     }
     normalized_method = method_normalize.get(payment_method)
     if not normalized_method:

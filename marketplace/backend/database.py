@@ -30,6 +30,18 @@ def init_db():
         )
     """)
 
+    c.execute("""
+        CREATE TABLE IF NOT EXISTS password_reset_tokens (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            token_hash TEXT UNIQUE NOT NULL,
+            expires_at TIMESTAMP NOT NULL,
+            used_at TIMESTAMP,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    """)
+
     # Products table
     c.execute("""
         CREATE TABLE IF NOT EXISTS products (
@@ -176,7 +188,6 @@ def init_db():
         ("Cash on Delivery", "Pay when item is delivered", "ðŸ’µ", 1),
         ("M-Pesa", "Mobile money payment via M-Pesa", "ðŸ“±", 1),
         ("Card Payment", "Visa, Mastercard, and other cards", "ðŸ’³", 1),
-        ("Bitcoin", "Cryptocurrency payment with Bitcoin", "â‚¿", 1),
     ]
     existing_methods = {row[0] for row in c.execute("SELECT name FROM payment_methods").fetchall()}
     for method_name, desc, icon, is_active in payment_methods:
@@ -185,6 +196,8 @@ def init_db():
                 "INSERT INTO payment_methods (name, description, icon, is_active) VALUES (?, ?, ?, ?)",
                 (method_name, desc, icon, is_active)
             )
+    # Bitcoin is no longer offered for new purchases; keep old records intact.
+    c.execute("UPDATE payment_methods SET is_active=0 WHERE name='Bitcoin'")
     conn.commit()
 
     # Preserve the approval workflow: pending listings must not become public
