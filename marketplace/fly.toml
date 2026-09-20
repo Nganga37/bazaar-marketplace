@@ -1,0 +1,29 @@
+app = "bazaar-marketplace"
+primary_region = "jnb"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  DATABASE_PATH = "/data/bazaar.db"
+  HOST = "0.0.0.0"
+  PORT = "8000"
+
+[[mounts]]
+  source = "bazaar_data"
+  destination = "/data"
+
+[[http_service.checks]]
+  interval = "30s"
+  timeout = "5s"
+  grace_period = "10s"
+  method = "GET"
+  path = "/health"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]

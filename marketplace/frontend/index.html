@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bazaar â€” Marketplace</title>
+  <title>Bazaar — Marketplace</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono&display=swap"
     rel="stylesheet">
@@ -222,7 +222,7 @@
       margin-bottom: 16px
     }
 
-    /* â”€â”€ LAYOUT â”€â”€ */
+    /* ── LAYOUT ── */
     #app {
       min-height: 100vh;
       display: flex;
@@ -252,7 +252,7 @@
       }
     }
 
-    /* â”€â”€ NAVBAR â”€â”€ */
+    /* ── NAVBAR ── */
     nav {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -381,7 +381,7 @@
       margin-left: 4px
     }
 
-    /* â”€â”€ BUTTONS â”€â”€ */
+    /* ── BUTTONS ── */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -460,7 +460,7 @@
       transform: none
     }
 
-    /* â”€â”€ CARDS â”€â”€ */
+    /* ── CARDS ── */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -474,7 +474,7 @@
       transform: translateY(-2px)
     }
 
-    /* â”€â”€ PRODUCT GRID â”€â”€ */
+    /* ── PRODUCT GRID ── */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -587,10 +587,12 @@
 
     .stars {
       color: #f59e0b;
-      letter-spacing: -2px
+      letter-spacing: 1px;
+      white-space: nowrap;
+      font-family: Arial, sans-serif
     }
 
-    /* â”€â”€ FORMS â”€â”€ */
+    /* ── FORMS ── */
     .form-group {
       margin-bottom: 18px
     }
@@ -632,7 +634,7 @@
       cursor: pointer
     }
 
-    /* â”€â”€ TABLE â”€â”€ */
+    /* ── TABLE ── */
     .table-wrap {
       overflow-x: auto;
       border-radius: var(--r2);
@@ -671,7 +673,7 @@
       background: var(--bg)
     }
 
-    /* â”€â”€ STATUS BADGES â”€â”€ */
+    /* ── STATUS BADGES ── */
     .status {
       display: inline-flex;
       align-items: center;
@@ -705,7 +707,7 @@
       color: var(--blue)
     }
 
-    /* â”€â”€ MODAL â”€â”€ */
+    /* ── MODAL ── */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -749,6 +751,15 @@
       line-height: 1
     }
 
+    .modal-close svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+    }
+
     .modal-body {
       padding: 24px
     }
@@ -761,7 +772,7 @@
       justify-content: flex-end
     }
 
-    /* â”€â”€ TOAST â”€â”€ */
+    /* ── TOAST ── */
     #toast-container {
       position: fixed;
       bottom: 24px;
@@ -827,6 +838,16 @@
       margin-right: 8px;
     }
 
+    .payment-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .status-chip {
       display: inline-flex;
       align-items: center;
@@ -860,7 +881,7 @@
       }
     }
 
-    /* â”€â”€ CONTAINERS â”€â”€ */
+    /* ── CONTAINERS ── */
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -871,7 +892,7 @@
       padding: 40px 0
     }
 
-    /* â”€â”€ STAT CARDS â”€â”€ */
+    /* ── STAT CARDS ── */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -907,7 +928,7 @@
       margin-top: 4px
     }
 
-    /* â”€â”€ SIDEBAR LAYOUT â”€â”€ */
+    /* ── SIDEBAR LAYOUT ── */
     .dash-layout {
       display: grid;
       grid-template-columns: 220px 1fr;
@@ -957,7 +978,7 @@
       padding: 12px 16px 4px
     }
 
-    /* â”€â”€ HERO â”€â”€ */
+    /* ── HERO ── */
     .hero {
       background: linear-gradient(135deg, #1a1714 0%, #2d2420 100%);
       color: #fff;
@@ -1012,7 +1033,7 @@
       opacity: .15
     }
 
-    /* â”€â”€ FILTERS â”€â”€ */
+    /* ── FILTERS ── */
     .filters {
       display: flex;
       gap: 10px;
@@ -1040,7 +1061,7 @@
       color: var(--accent)
     }
 
-    /* â”€â”€ DETAIL PAGE â”€â”€ */
+    /* ── DETAIL PAGE ── */
     .product-detail {
       display: grid;
       grid-template-columns: 1fr 380px;
@@ -1118,10 +1139,13 @@
     .qty-btn {
       width: 36px;
       height: 36px;
+      padding: 0;
       border-radius: var(--r);
       border: 1.5px solid var(--border2);
-      background: none;
-      font-size: 18px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 20px;
+      line-height: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1130,8 +1154,9 @@
     }
 
     .qty-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent)
+      border-color: var(--ink);
+      background: var(--accent-light);
+      color: var(--ink)
     }
 
     .qty-display {
@@ -1141,7 +1166,7 @@
       text-align: center
     }
 
-    /* â”€â”€ EMPTY STATE â”€â”€ */
+    /* ── EMPTY STATE ── */
     .empty-state {
       text-align: center;
       padding: 64px 24px;
@@ -1166,7 +1191,7 @@
       margin: 0 auto 20px
     }
 
-    /* â”€â”€ TABS â”€â”€ */
+    /* ── TABS ── */
     .tabs {
       display: flex;
       gap: 0;
@@ -1194,7 +1219,7 @@
       color: var(--ink)
     }
 
-    /* â”€â”€ AUTH PAGES â”€â”€ */
+    /* ── AUTH PAGES ── */
     .auth-wrap {
       min-height: 100vh;
       display: flex;
@@ -1274,7 +1299,7 @@
       font-weight: 600
     }
 
-    /* â”€â”€ CHAT â”€â”€ */
+    /* ── CHAT ── */
     .chat-wrap {
       display: grid;
       grid-template-columns: 280px 1fr;
@@ -1352,7 +1377,7 @@
       text-align: right
     }
 
-    /* â”€â”€ BREADCRUMB â”€â”€ */
+    /* ── BREADCRUMB ── */
     .breadcrumb {
       display: flex;
       align-items: center;
@@ -1374,7 +1399,7 @@
       color: var(--light)
     }
 
-    /* â”€â”€ SCROLLBAR â”€â”€ */
+    /* ── SCROLLBAR ── */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px
@@ -1389,7 +1414,7 @@
       border-radius: 3px
     }
 
-    /* â”€â”€ RESPONSIVE â”€â”€ */
+    /* ── RESPONSIVE ── */
     @media(max-width:768px) {
 
       .product-detail,
@@ -1412,20 +1437,30 @@
     }
   </style>
   <style>
-    /* Storefront refresh â€” tuned to the supplied reference UI */
+    /* Storefront refresh — tuned to the supplied reference UI */
     :root { --bg:#f6f6f4; --surface:#fff; --surface2:#f0f0ed; --border:#e2e2de; --border2:#cfcfca; --ink:#1d1d1b; --muted:#777873; --light:#a6a7a1; --accent:#20201e; --accent2:#4b4b46; --accent-light:#ecece8; --green:#637044; --r:2px; --r2:3px; --shadow:0 1px 4px rgba(24,24,20,.08); --shadow2:0 10px 30px rgba(24,24,20,.12); }
     body { background:var(--bg); color:var(--ink); font-size:13px; letter-spacing:.01em; } h1,h2,h3 { font-family:'DM Sans',sans-serif; } .inline-error { display:none; background:#fff1f0; border:1px solid #df8f88; color:#a53a32; padding:10px 11px; margin:4px 0 14px; border-radius:2px; font-size:12px; line-height:1.4; } .inline-error.show { display:block; }
     #main-nav { display:block!important; background:#fff; border-bottom:1px solid var(--border); box-shadow:none; } .nav-inner { max-width:1240px; height:68px; padding:0 28px; gap:28px; } .logo { font-family:'DM Sans',sans-serif; text-transform:lowercase; font-size:21px; letter-spacing:-.06em; color:var(--ink); } .logo span { color:#9a9b93; } .nav-search { max-width:430px; } .nav-search input { background:#f7f7f5; border:1px solid var(--border); border-radius:2px; padding:11px 14px 11px 38px; } .nav-links { gap:2px; } .nav-btn { border-radius:2px; color:#42433e; font-size:12px; text-transform:uppercase; letter-spacing:.08em; } .nav-btn.primary { background:var(--ink); border-radius:2px; }
     .container { max-width:1240px; padding:0 28px; } .page { animation:none; } #page-home { background:var(--bg); }
     .storefront { max-width:1240px; margin:0 auto; padding:22px 28px 64px; } .storefront .crumbs { color:#8a8b84; font-size:11px; margin-bottom:20px; } .storefront .crumbs span { color:var(--ink); } .storefront-hero { background:#e7e6e1; min-height:286px; display:grid; grid-template-columns:1fr 1fr; overflow:hidden; } .storefront-hero-copy { padding:46px 48px; position:relative; z-index:1; } .eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:10px; font-weight:700; color:#6b6d65; margin-bottom:14px; } .storefront-hero h1 { font-size:clamp(31px,4vw,50px); line-height:.98; letter-spacing:-.06em; max-width:380px; margin-bottom:18px; } .storefront-hero p { max-width:310px; color:#696a64; line-height:1.55; margin-bottom:23px; } .storefront-btn { display:inline-flex; align-items:center; justify-content:center; background:var(--ink); color:#fff; border:0; padding:12px 22px; text-transform:uppercase; letter-spacing:.12em; font-size:10px; font-weight:700; cursor:pointer; }
-    .home-shell { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) 285px; align-items:start; } .home-shell .storefront { max-width:none; margin:0; } .home-login { background:#fff; border:1px solid var(--border); margin:42px 28px 0 0; padding:22px 20px; position:sticky; top:90px; } .home-login h2 { font-size:20px; letter-spacing:-.04em; margin:0 0 6px; } .home-login p { color:var(--muted); line-height:1.45; font-size:12px; margin:0 0 20px; } .home-login .form-group { margin-bottom:12px; } .home-login .form-label { font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px; } .home-login .form-input { padding:10px 11px; border-radius:2px; background:#fafaf8; font-size:12px; } .home-login .btn { width:100%; border-radius:2px; padding:11px 12px; font-size:11px; text-transform:uppercase; letter-spacing:.1em; } .home-login .login-note { text-align:center; color:var(--muted); font-size:11px; margin:16px 0 0; } .home-login .login-note a { color:var(--ink); text-decoration:underline; cursor:pointer; }
+    .home-shell { max-width:1400px; margin:0 auto; display:grid; grid-template-columns:minmax(0,1fr) 285px; align-items:start; } .home-shell.logged-in { grid-template-columns:minmax(0,1fr); } .home-shell .storefront { max-width:none; margin:0; } .home-login { background:#fff; border:1px solid var(--border); margin:42px 28px 0 0; padding:22px 20px; position:sticky; top:90px; } .home-login h2 { font-size:20px; letter-spacing:-.04em; margin:0 0 6px; } .home-login p { color:var(--muted); line-height:1.45; font-size:12px; margin:0 0 20px; } .home-login .form-group { margin-bottom:12px; } .home-login .form-label { font-size:10px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:5px; } .home-login .form-input { padding:10px 11px; border-radius:2px; background:#fafaf8; font-size:12px; } .home-login .btn { width:100%; border-radius:2px; padding:11px 12px; font-size:11px; text-transform:uppercase; letter-spacing:.1em; } .home-login .login-note { text-align:center; color:var(--muted); font-size:11px; margin:16px 0 0; } .home-login .login-note a { color:var(--ink); text-decoration:underline; cursor:pointer; }
     .storefront-hero-art { position:relative; background:linear-gradient(145deg,#d7d8d4,#bfc1bd); overflow:hidden; } .storefront-hero-art:before,.storefront-hero-art:after { content:''; position:absolute; background:#f6f6f4; box-shadow:0 10px 20px rgba(0,0,0,.08); transform:rotate(-12deg); } .storefront-hero-art:before { width:210px; height:180px; left:18%; top:28%; border-radius:45% 55% 8% 8%; } .storefront-hero-art:after { width:155px; height:210px; left:55%; top:18%; background:#252727; transform:rotate(15deg); border-radius:25% 25% 4% 4%; }
     .category-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(82px,1fr)); gap:12px; padding:22px 0 28px; border-bottom:1px solid var(--border); } .category-tile { text-align:center; color:#42433e; cursor:pointer; font-size:11px; } .category-tile i { display:flex; height:47px; width:47px; border-radius:50%; background:#e9e9e5; margin:0 auto 8px; align-items:center; justify-content:center; font-style:normal; color:#555650; } .category-tile i svg { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
     .section-bar { display:flex; align-items:end; justify-content:space-between; margin:32px 0 15px; } .section-bar h2 { font-size:20px; letter-spacing:-.04em; margin:0; } .section-bar a { color:#71736c; text-transform:uppercase; letter-spacing:.12em; font-size:10px; cursor:pointer; } .mini-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; } .mini-product { background:#fff; border:1px solid var(--border); min-width:0; cursor:pointer; } .mini-product .mini-img { height:145px; background:#e8e8e4; overflow:hidden; } .mini-product .mini-img img { width:100%; height:100%; object-fit:cover; filter:saturate(.72); transition:transform .25s; } .mini-product:hover .mini-img img { transform:scale(1.04); } .mini-product .mini-body { padding:10px 11px 12px; } .mini-product small { color:#8b8c85; text-transform:uppercase; letter-spacing:.08em; font-size:9px; } .mini-product h3 { font-size:12px; margin:5px 0 8px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; } .mini-price { font-weight:700; font-size:13px; } .mini-price del { color:#a0a19b; font-weight:400; margin-left:5px; font-size:11px; }
     .deal-banner { margin-top:34px; background:#252a2d; color:#fff; min-height:155px; padding:30px 36px; display:flex; align-items:center; justify-content:space-between; } .deal-banner h2 { font-size:25px; letter-spacing:-.05em; margin:5px 0; } .deal-banner p { color:#bfc3c0; max-width:390px; margin:0; } .deal-banner .storefront-btn { background:#fff; color:var(--ink); } footer { background:#252a2d!important; border-top:0!important; color:#fff; padding:38px 16px!important; margin-top:0!important; } footer h3 { font-size:18px; } footer strong { font-size:11px; text-transform:uppercase; letter-spacing:.1em; } footer p,footer a { color:#a9afad!important; }
     .shop-page { background:var(--bg); } .shop-page .container { padding-top:30px; padding-bottom:70px; } .shop-page .shop-heading-row { display:flex; align-items:end; gap:14px; border-bottom:1px solid var(--border); padding-bottom:18px; margin-bottom:18px; } .shop-page .section-title { font-size:30px; letter-spacing:-.06em; margin:0; } .shop-page .shop-count { font-size:11px; color:var(--muted); margin-bottom:5px; } .shop-page .shop-heading-actions { margin-left:auto; } .shop-page .select-compact { border:1px solid var(--border); border-radius:2px; background:#fff; padding:9px 12px; color:var(--ink); font-size:11px; } .shop-page .filters { gap:7px; margin-bottom:14px; } .shop-page .filter-chip { background:#fff; border:1px solid var(--border); border-radius:2px; padding:8px 13px; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#64655f; } .shop-page .filter-chip:hover,.shop-page .filter-chip.active { background:var(--ink); border-color:var(--ink); color:#fff; } .shop-page .price-filter { background:#fff; border:1px solid var(--border); padding:10px 12px; margin-bottom:22px; gap:8px; } .shop-page .price-label { font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); } .shop-page .price-input { width:95px; border:0; border-bottom:1px solid var(--border2); border-radius:0; background:transparent; padding:5px 3px; font-size:11px; } .shop-page .product-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; } .shop-page .product-card { background:#fff; border:1px solid var(--border); border-radius:2px; box-shadow:none; } .shop-page .product-card:hover { transform:translateY(-3px); box-shadow:var(--shadow2); } .shop-page .product-card .img-wrap { aspect-ratio:1/1; background:#e9e9e5; } .shop-page .product-card .img-wrap img { filter:saturate(.78); } .shop-page .product-card .wish-btn { top:9px; right:9px; width:29px; height:29px; border-radius:50%; font-size:13px; color:var(--ink); } .shop-page .product-card .card-body { padding:12px; } .shop-page .product-card .category { color:#898a83; font-size:9px; letter-spacing:.1em; margin-bottom:6px; } .shop-page .product-card h3 { font-size:13px; font-weight:600; margin-bottom:8px; } .shop-page .product-card .price { color:var(--ink); font-family:'DM Sans',sans-serif; font-size:14px; } .shop-page .product-card .meta { border-top:1px solid #eeeeeb; padding-top:9px; margin-top:10px; font-size:10px; } .shop-page .stars { color:#9b7c38; } .shop-page .pagination-row { margin-top:28px; } .shop-page .pagination-row .btn { border-radius:2px; font-size:10px; padding:8px 12px; }
     .shop-category-nav { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 20px; } .shop-category-nav button { border:1px solid var(--border); background:#fff; color:#555650; border-radius:2px; padding:9px 13px; cursor:pointer; font:500 10px 'DM Sans',sans-serif; text-transform:uppercase; letter-spacing:.08em; transition:all .15s; } .shop-category-nav button:hover { background:var(--ink); border-color:var(--ink); color:#fff; transform:translateY(-1px); }
-    @media(max-width:900px) { .home-shell { grid-template-columns:1fr; } .home-login { position:static; margin:0 16px 30px; order:-1; } .shop-page .product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+     .deal-banner .eyebrow { color:#a9afad; }
+     footer { background:var(--surface2); border-top:1px solid var(--border); padding:22px 16px; margin-top:28px; }
+     .footer-inner { display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-between; }
+     .footer-brand { min-width:220px; }
+     .footer-brand h3 { margin:0 0 6px; }
+     .footer-brand p { margin:0; color:var(--muted); font-size:14px; }
+     .footer-contact { display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+     .footer-contact-line { font-size:14px; color:var(--muted); }
+     .footer-social-links { display:flex; gap:8px; margin-top:6px; }
+     .footer-social-links a { color:var(--muted); }
+     @media(max-width:900px) { .home-shell { grid-template-columns:1fr; } .home-login { position:static; margin:0 16px 30px; order:-1; } .shop-page .product-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
     @media(max-width:760px) { .nav-inner{padding:0 16px;gap:12px}.nav-links .nav-btn:first-child{display:none}.nav-search{min-width:0}.storefront{padding:18px 16px 40px}.storefront-hero{grid-template-columns:1fr}.storefront-hero-copy{padding:34px 25px}.storefront-hero-art{min-height:170px}.category-row{grid-template-columns:repeat(4,1fr);row-gap:18px}.mini-grid{grid-template-columns:repeat(2,1fr)}.mini-product .mini-img{height:120px}.shop-page .container{padding-left:16px;padding-right:16px}.shop-page .shop-heading-row{align-items:start;flex-wrap:wrap}.shop-page .shop-heading-actions{width:100%;margin-left:0}.shop-page .select-compact{width:100%}.shop-page .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.shop-page .product-card .card-body{padding:10px}.deal-banner{display:block;padding:25px}.deal-banner .storefront-btn{margin-top:18px} }
   </style>
 </head>
@@ -1433,9 +1468,9 @@
 <body>
   <div id="toast-container"></div>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ════════════════════════════════════════════════════════ -->
   <!--  NAV                                                    -->
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ════════════════════════════════════════════════════════ -->
   <nav id="main-nav">
     <div class="nav-inner">
       <div class="logo clickable" onclick="navigate('home')">Bazaar<span>.</span></div>
@@ -1448,12 +1483,12 @@
     </div>
   </nav>
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ════════════════════════════════════════════════════════ -->
   <!--  PAGES                                                  -->
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ════════════════════════════════════════════════════════ -->
   <div id="app">
 
-    <!-- â”€â”€ HOME â”€â”€ -->
+    <!-- ── HOME ── -->
     <div class="page" id="page-home">
       <div class="home-shell">
       <main class="storefront">
@@ -1465,23 +1500,23 @@
         <div class="category-row">
           <div class="category-tile" onclick="navigate('shop')"><i><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></i>All products</div><div class="category-tile" onclick="setCategory('Clothing')"><i><svg viewBox="0 0 24 24"><path d="M8 5 4 8l2 4 2-1v8h8v-8l2 1 2-4-4-3-2 2h-4z"/></svg></i>Clothing</div><div class="category-tile" onclick="setCategory('Shoes')"><i><svg viewBox="0 0 24 24"><path d="M4 16c2 0 4-2 5-6l3 3c2 2 5 2 8 3v3H4z"/><path d="M8 16h8"/></svg></i>Shoes</div><div class="category-tile" onclick="setCategory('Home')"><i><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8"/><path d="M5 10v10h14V10M9 20v-6h6v6"/></svg></i>Home</div><div class="category-tile" onclick="setCategory('Kitchen')"><i><svg viewBox="0 0 24 24"><path d="M5 3v8M8 3v8M5 7h3M6.5 11v10M15 3v18M15 3c4 2 4 6 0 8"/></svg></i>Kitchen</div><div class="category-tile" onclick="setCategory('Electronics')"><i><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="1"/><path d="M8 21h8M12 17v4"/></svg></i>Electronics</div><div class="category-tile" onclick="setCategory('Beauty')"><i><svg viewBox="0 0 24 24"><path d="M9 4h6v4H9zM7 8h10v12H7zM10 4V2h4v2"/></svg></i>Beauty</div><div class="category-tile" onclick="setCategory('Sports')"><i><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M5 8h14M5 16h14M12 4v16"/></svg></i>Sports</div><div class="category-tile" onclick="setCategory('Books')"><i><svg viewBox="0 0 24 24"><path d="M5 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H5zM19 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/></svg></i>Books</div><div class="category-tile" onclick="setCategory('Accessories')"><i><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="4"/><path d="m12 12 7 7M14 5l5 5"/></svg></i>Accessories</div><div class="category-tile"><i><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 5.5-7 10-7 10z"/></svg></i>Kids</div><div class="category-tile"><i><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></svg></i>More</div>
         </div>
-        <div class="section-bar"><h2>Today for You</h2><a onclick="navigate('shop')">Explore collection â†’</a></div>
+        <div class="section-bar"><h2>Today for You</h2><a onclick="navigate('shop')">Explore collection →</a></div>
         <div class="product-grid" id="home-products"></div>
-        <section class="deal-banner"><div><div class="eyebrow" style="color:#a9afad">Bazaar editorial</div><h2>Good design should feel effortless.</h2><p>Shop beyond boundaries with independent sellers and beautifully useful things.</p></div><button class="storefront-btn" onclick="navigate('shop')">Discover more</button></section>
+         <section class="deal-banner"><div><div class="eyebrow">Bazaar editorial</div><h2>Good design should feel effortless.</h2><p>Shop beyond boundaries with independent sellers and beautifully useful things.</p></div><button class="storefront-btn" onclick="navigate('shop')">Discover more</button></section>
       </main>
-      <aside class="home-login">
+      <aside class="home-login" id="home-login-panel">
         <div class="eyebrow">Welcome back</div><h2>Sign in to Bazaar</h2><p>Save favorites, track orders, and shop from independent sellers.</p>
         <form onsubmit="event.preventDefault();homeLogin()">
           <div class="form-group"><label class="form-label" for="home-email">Email</label><input class="form-input" id="home-email" type="email" placeholder="you@email.com" required></div>
           <div class="form-group"><label class="form-label" for="home-password">Password</label><input class="form-input" id="home-password" type="password" placeholder="Your password" required></div>
           <div id="home-error" class="inline-error" role="alert"></div><button class="btn btn-primary" type="submit">Sign in</button>
         </form>
-        <div class="login-note">New here? <a onclick="navigate('auth');renderAuthPage('register')">Create an account</a></div>
+        <div class="login-note">New here? <a onclick="navigate('auth');renderAuthPage('register', 'client')">Create a buyer account</a></div>
       </aside>
       </div>
     </div>
 
-    <!-- â”€â”€ SHOP â”€â”€ -->
+    <!-- ── SHOP ── -->
     <div class="page shop-page" id="page-shop">
       <div class="container section">
         <div class="shop-heading-row">
@@ -1490,8 +1525,8 @@
           <div class="shop-heading-actions">
             <select class="form-input select-compact" onchange="shopState.sort=this.value;loadShop()">
               <option value="newest">Newest</option>
-              <option value="price_asc">Price â†‘</option>
-              <option value="price_desc">Price â†“</option>
+              <option value="price_asc">Price ↑</option>
+              <option value="price_desc">Price ↓</option>
               <option value="popular">Most Popular</option>
             </select>
           </div>
@@ -1503,7 +1538,7 @@
         <div id="price-filter" class="price-filter">
           <span class="price-label">Price:</span>
           <input type="number" class="form-input price-input" placeholder="Min" id="price-min" onchange="loadShop()">
-          <span class="shop-count">â€“</span>
+          <span class="shop-count">–</span>
           <input type="number" class="form-input price-input" placeholder="Max" id="price-max" onchange="loadShop()">
         </div>
         <div class="product-grid" id="shop-products"></div>
@@ -1511,7 +1546,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ PRODUCT DETAIL â”€â”€ -->
+    <!-- ── PRODUCT DETAIL ── -->
     <div class="page" id="page-product">
       <div class="container">
         <div class="breadcrumb">
@@ -1528,7 +1563,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ AUTH â”€â”€ -->
+    <!-- ── AUTH ── -->
     <div class="page" id="page-auth">
       <div class="auth-wrap">
         <div class="auth-card">
@@ -1539,7 +1574,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ CLIENT DASHBOARD â”€â”€ -->
+    <!-- ── CLIENT DASHBOARD ── -->
     <div class="page" id="page-client-dashboard">
       <div class="container section">
         <h2 class="section-heading">My Account</h2>
@@ -1556,7 +1591,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ SELLER DASHBOARD â”€â”€ -->
+    <!-- ── SELLER DASHBOARD ── -->
     <div class="page" id="page-seller-dashboard">
       <div class="container section">
         <h2 class="section-heading">Seller Dashboard</h2>
@@ -1576,7 +1611,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ ADMIN DASHBOARD â”€â”€ -->
+    <!-- ── ADMIN DASHBOARD ── -->
     <div class="page" id="page-admin-dashboard">
       <div class="container section">
         <h2 class="section-heading">Admin Panel</h2>
@@ -1597,43 +1632,42 @@
 
   </div><!-- end #app -->
 
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ════════════════════════════════════════════════════════ -->
   <!--  MODAL                                                  -->
-  <!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+  <!-- ════════════════════════════════════════════════════════ -->
   <div id="modal-overlay" class="modal-overlay hidden" onclick="if(event.target===this)closeModal()">
     <div class="modal" id="modal-box">
       <div class="modal-header">
         <h2 id="modal-title"></h2>
-        <button class="modal-close" onclick="closeModal()">âœ•</button>
+        <button class="modal-close" aria-label="Close" onclick="closeModal()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       </div>
       <div class="modal-body" id="modal-body"></div>
       <div class="modal-footer" id="modal-footer"></div>
     </div>
   </div>
 
-  <!-- â”€â”€ FOOTER / CONTACT â”€â”€ -->
-  <footer style="background:var(--surface2);border-top:1px solid var(--border);padding:22px 16px;margin-top:28px">
-    <div class="container"
-      style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between">
-      <div style="min-width:220px">
-        <h3 style="margin:0 0 6px 0">Bazaar Marketplace</h3>
-        <p style="margin:0;color:var(--muted);font-size:14px">Questions? Reach out â€” we're happy to help sellers and
+  <!-- ── FOOTER / CONTACT ── -->
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <h3>Bazaar Marketplace</h3>
+        <p>Questions? Reach out — we're happy to help sellers and
           buyers.</p>
       </div>
-      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+      <div class="footer-contact">
         <div>
           <strong>Contact:</strong>
-          <div style="font-size:14px;color:var(--muted)">support@bazaar.example | +254 700 000 000</div>
+          <div class="footer-contact-line">support@bazaar.example | +254 700 000 000</div>
         </div>
         <div>
           <strong>Social:</strong>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <a href="#" target="_blank" style="color:var(--muted)">Facebook</a>
-            <a href="#" target="_blank" style="color:var(--muted)">Twitter</a>
-            <a href="#" target="_blank" style="color:var(--muted)">Instagram</a>
-            <a href="#" target="_blank" style="color:var(--muted)">LinkedIn</a>
-            <a href="#" target="_blank" style="color:var(--muted)">YouTube</a>
-            <a href="#" target="_blank" style="color:var(--muted)">TikTok</a>
+          <div class="footer-social-links">
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">YouTube</a>
+            <a href="#" target="_blank">TikTok</a>
           </div>
         </div>
       </div>
@@ -1641,9 +1675,9 @@
   </footer>
 
   <script>
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  CONFIG & STATE
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     const API = `${window.location.origin}/api`;
     let state = {
       user: JSON.parse(localStorage.getItem('user') || 'null'),
@@ -1678,9 +1712,9 @@
       renderNav();
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  API HELPER
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     async function api(method, path, body = null) {
       const opts = {
         method,
@@ -1694,9 +1728,9 @@
       return data;
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  TOAST
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function toast(msg, type = 'success') {
       const el = document.createElement('div');
       el.className = `toast ${type}`;
@@ -1706,9 +1740,9 @@
       setTimeout(() => el.remove(), 3500);
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  MODAL
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function openModal(title, body, footer = '') {
       document.getElementById('modal-title').textContent = title;
       document.getElementById('modal-body').innerHTML = body;
@@ -1719,9 +1753,9 @@
       document.getElementById('modal-overlay').classList.add('hidden');
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  NAVIGATION
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function navigate(page) {
       document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
       const el = document.getElementById(`page-${page}`);
@@ -1742,13 +1776,17 @@
       navigate(page);
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  NAV RENDER
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function renderNav() {
       const links = document.getElementById('nav-links');
       const nav = document.getElementById('main-nav');
+      const homeLoginPanel = document.getElementById('home-login-panel');
+      const homeShell = document.querySelector('.home-shell');
       nav.style.display = 'block';
+      if (homeLoginPanel) homeLoginPanel.style.display = state.user ? 'none' : '';
+      if (homeShell) homeShell.classList.toggle('logged-in', Boolean(state.user));
 
       let html = `<button class="nav-btn" onclick="navigate('shop')">Shop</button>`;
       if (!state.user) {
@@ -1771,39 +1809,70 @@
 
     function setRoleAndNavigate(role) {
       navigate('auth');
-      renderAuthPage('login');
-      setRole(role, 'login');
+      renderAuthPage('login', role);
     }
 
     function socialLogin(provider) {
       toast(`Connecting to ${provider}...`);
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  AUTH
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-    function renderAuthPage(mode) {
-      const savedRole = document.getElementById('auth-role')?.value || 'client';
-      const currentRole = mode === 'register' && savedRole === 'admin' ? 'client' : savedRole;
+    // ═══════════════════════════════════════════════════════════
+    function renderAuthPage(mode, role = 'client') {
+      if (mode === 'reset') {
+        document.getElementById('auth-title').textContent = 'Reset your password';
+        document.getElementById('auth-subtitle').textContent = 'Choose a new password for your account';
+        document.getElementById('auth-form').innerHTML = `<div class="form-group"><label class="form-label" for="reset-password">New password</label><input class="form-input" type="password" id="reset-password" minlength="12" autocomplete="new-password" placeholder="At least 12 characters"></div><div id="auth-error" class="inline-error" role="alert"></div><button class="btn btn-primary" style="width:100%;margin-bottom:16px" onclick="submitPasswordReset()">Set new password</button><p style="text-align:center;font-size:13px;color:var(--muted)"><a href="#" onclick="renderAuthPage('login')" style="color:var(--accent)">Back to sign in</a></p>`;
+        return;
+      }
+      const currentRole = role === 'seller' ? 'seller' : 'client';
+      const isSeller = currentRole === 'seller';
 
-      let html = `<div class="role-toggle">
-      <div class="role-btn ${currentRole === 'client' ? 'active' : ''}" id="role-client" onclick="setRole('client', '${mode}')"><div class="role-icon role-icon-buyer"></div><div class="role-label">Buyer</div><div style="font-size:11px;color:var(--muted)">${mode === 'login' ? 'Sign in to shop' : 'Shop items'}</div></div>
-      <div class="role-btn ${currentRole === 'seller' ? 'active' : ''}" id="role-seller" onclick="setRole('seller', '${mode}')"><div class="role-icon role-icon-seller"></div><div class="role-label">Seller</div><div style="font-size:11px;color:var(--muted)">${mode === 'login' ? 'Manage your shop' : 'List & sell'}</div></div>
-    </div>
-    <input type="hidden" id="auth-role" value="${currentRole}">`;
+      let html = `<input type="hidden" id="auth-role" value="${currentRole}">`;
 
       if (mode === 'register') {
         html += `<div class="form-group"><label class="form-label">Full Name</label><input class="form-input" id="auth-name" placeholder="Your name"></div>`;
       }
 
       html += `<div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" id="auth-email" placeholder="you@email.com"></div>
-    <div class="form-group"><label class="form-label" for="auth-password">Password</label><div style="position:relative"><input class="form-input" style="padding-right:72px" type="password" id="auth-password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="${mode === 'login' ? 'current-password' : 'new-password'}"><button type="button" id="auth-password-toggle" aria-label="Show password" onclick="togglePasswordVisibility('auth-password', this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-weight:600">Show</button></div></div>
+    <div class="form-group"><label class="form-label" for="auth-password">Password</label><div style="position:relative"><input class="form-input" style="padding-right:72px" type="password" id="auth-password" placeholder="••••••••" autocomplete="${mode === 'login' ? 'current-password' : 'new-password'}"><button type="button" id="auth-password-toggle" aria-label="Show password" onclick="togglePasswordVisibility('auth-password', this)" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-weight:600">Show</button></div></div>
     <div id="auth-error" class="inline-error" role="alert"></div><button class="btn btn-primary" style="width:100%;margin-bottom:16px" onclick="submitAuth('${mode}')">${mode === 'login' ? 'Sign In' : 'Create Account'}</button>
     <p style="text-align:center;font-size:13px;color:var(--muted)">
-      ${mode === 'login' ? `No account? <a href="#" onclick="renderAuthPage('register')" style="color:var(--accent)">Sign up</a>` : `Have account? <a href="#" onclick="renderAuthPage('login')" style="color:var(--accent)">Sign in</a>`}
+      ${mode === 'login'
+        ? isSeller
+          ? `Forgot your password? <a href="#" onclick="renderAuthPage('forgot', 'seller')" style="color:var(--accent)">Reset it</a><br><br>New seller? <a href="#" onclick="renderAuthPage('register', 'seller')" style="color:var(--accent)">Create a seller account</a><br><br><span style="font-size:12px">Looking to shop? <a href="#" onclick="renderAuthPage('login', 'client')" style="color:var(--accent)">Buyer sign in</a></span>`
+          : `<a href="#" onclick="renderAuthPage('forgot')" style="color:var(--accent)">Forgot password?</a><br><br><span style="font-size:12px">Are you a seller? <a href="#" onclick="renderAuthPage('login', 'seller')" style="color:var(--accent)">Seller sign in</a> or <a href="#" onclick="renderAuthPage('register', 'seller')" style="color:var(--accent)">create a seller account</a></span><br><br>New to Bazaar? <a href="#" onclick="renderAuthPage('register', 'client')" style="color:var(--accent)">Create a buyer account</a>`
+        : isSeller
+          ? `Already selling? <a href="#" onclick="renderAuthPage('login', 'seller')" style="color:var(--accent)">Seller sign in</a><br><br><span style="font-size:12px">Want to shop instead? <a href="#" onclick="renderAuthPage('register', 'client')" style="color:var(--accent)">Create a buyer account</a></span>`
+          : `Have an account? <a href="#" onclick="renderAuthPage('login', 'client')" style="color:var(--accent)">Buyer sign in</a><br><br><span style="font-size:12px">Want to sell? <a href="#" onclick="renderAuthPage('register', 'seller')" style="color:var(--accent)">Create a seller account</a></span>`}
     </p>`;
       document.getElementById('auth-form').innerHTML = html;
       setRole(currentRole, mode);
+    }
+
+    function renderForgotPassword(role = 'client') {
+      document.getElementById('auth-title').textContent = 'Forgot password';
+      document.getElementById('auth-subtitle').textContent = 'We will email you a secure reset link';
+      document.getElementById('auth-form').innerHTML = `<input type="hidden" id="forgot-role" value="${role === 'seller' ? 'seller' : 'client'}"><div class="form-group"><label class="form-label" for="forgot-email">Email</label><input class="form-input" type="email" id="forgot-email" placeholder="you@email.com" required></div><div id="auth-error" class="inline-error" role="alert"></div><button class="btn btn-primary" style="width:100%;margin-bottom:16px" onclick="submitForgotPassword()">Send reset link</button><p style="text-align:center;font-size:13px;color:var(--muted)"><a href="#" onclick="renderAuthPage('login', '${role === 'seller' ? 'seller' : 'client'}')" style="color:var(--accent)">Back to sign in</a></p>`;
+    }
+
+    const originalRenderAuthPage = renderAuthPage;
+    renderAuthPage = function(mode, role = 'client') { if (mode === 'forgot') return renderForgotPassword(role); return originalRenderAuthPage(mode, role); };
+
+    async function submitForgotPassword() {
+      const email = document.getElementById('forgot-email').value.trim();
+      if (!email) return;
+      try { const result = await api('POST', '/auth/forgot-password', { email }); toast(result.message); renderAuthPage('login', document.getElementById('forgot-role')?.value || 'client'); }
+      catch (e) { document.getElementById('auth-error').textContent = e.message; document.getElementById('auth-error').classList.add('show'); }
+    }
+
+    async function submitPasswordReset() {
+      const password = document.getElementById('reset-password').value;
+      const token = new URLSearchParams(window.location.search).get('reset_token');
+      if (!token || password.length < 12) { toast('Use a valid reset link and a password of at least 12 characters', 'error'); return; }
+      try { const result = await api('POST', '/auth/reset-password', { token, password }); toast(result.message); window.history.replaceState({}, '', window.location.pathname); renderAuthPage('login'); }
+      catch (e) { document.getElementById('auth-error').textContent = e.message; document.getElementById('auth-error').classList.add('show'); }
     }
 
     function togglePasswordVisibility(inputId, button) {
@@ -1885,11 +1954,16 @@
       navigate('home');
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  PRODUCTS
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
+    function starRating(value) {
+      const rating = Math.max(0, Math.min(5, Math.round(Number(value) || 0)));
+      return `<span aria-label="${rating} out of 5 stars">${'&#9733;'.repeat(rating)}${'&#9734;'.repeat(5 - rating)}</span>`;
+    }
+
     function productCard(p, showWish = true) {
-      const stars = 'â˜…'.repeat(Math.round(p.avg_rating || 0)) + 'â˜†'.repeat(5 - Math.round(p.avg_rating || 0));
+      const stars = starRating(p.avg_rating);
       const img = p.image_url
         ? `<img src="${escapeHtml(p.image_url)}" alt="${escapeHtml(p.title)}" onerror="this.parentNode.innerHTML='<div class=img-placeholder>No Image</div>'">`
         : `<div class="img-placeholder">No Image</div>`;
@@ -1969,7 +2043,7 @@
         const p = data.product;
         state.product = p;
         document.getElementById('detail-breadcrumb').textContent = p.title;
-        const stars = 'â˜…'.repeat(Math.round(p.avg_rating || 0)) + 'â˜†'.repeat(5 - Math.round(p.avg_rating || 0));
+        const stars = starRating(p.avg_rating);
         const img = p.image_url
           ? `<img src="${escapeHtml(p.image_url)}" alt="${escapeHtml(p.title)}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentNode.innerHTML='<div class=placeholder>No Image</div>'">`
           : `<div class="placeholder" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--muted)">No Image</div>`;
@@ -2002,7 +2076,7 @@
           </div>
           ${p.stock > 0 && state.user && state.user.id !== p.seller_id ? `
           <div class="qty-control">
-            <button class="qty-btn" onclick="changeQty(-1)">âˆ’</button>
+            <button class="qty-btn" aria-label="Decrease quantity" onclick="changeQty(-1)">&#8722;</button>
             <span class="qty-display" id="qty">1</span>
             <button class="qty-btn" onclick="changeQty(1)">+</button>
           </div>
@@ -2029,7 +2103,7 @@
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
             <div style="width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px">${escapeHtml(r.buyer_name[0])}</div>
             <div><div style="font-weight:600;font-size:14px">${escapeHtml(r.buyer_name)}</div>
-            <div class="stars" style="font-size:13px">${'â˜…'.repeat(r.rating)}${'â˜†'.repeat(5 - r.rating)}</div></div>
+            <div class="stars" style="font-size:13px">${starRating(r.rating)}</div></div>
           </div>
           <p style="font-size:14px;color:var(--muted)">${escapeHtml(r.comment || '')}</p>
         </div>`).join('');
@@ -2041,7 +2115,7 @@
           document.getElementById('review-form-wrap').innerHTML = `
         <div style="margin-top:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:20px">
           <h3 style="font-size:18px;margin-bottom:16px">Leave a Review</h3>
-          <div style="display:flex;gap:8px;margin-bottom:12px" id="star-select">${[1, 2, 3, 4, 5].map(n => `<span style="font-size:28px;cursor:pointer" onclick="setRating(${n})" data-v="${n}">â˜†</span>`).join('')}</div>
+          <div style="display:flex;gap:8px;margin-bottom:12px" id="star-select">${[1, 2, 3, 4, 5].map(n => `<span style="font-size:28px;line-height:1;cursor:pointer;color:#777873" onclick="setRating(${n})" data-v="${n}">&#9734;</span>`).join('')}</div>
           <input type="hidden" id="review-rating" value="0">
           <textarea class="form-input" id="review-comment" placeholder="Share your experience..." rows="3"></textarea>
           <button class="btn btn-primary btn-sm" style="margin-top:10px" onclick="submitReview(${p.id})">Submit Review</button>
@@ -2059,7 +2133,7 @@
     function setRating(n) {
       document.getElementById('review-rating').value = n;
       document.querySelectorAll('#star-select span').forEach(s => {
-        s.textContent = parseInt(s.dataset.v) <= n ? 'â˜…' : 'â˜†';
+        s.innerHTML = parseInt(s.dataset.v) <= n ? '&#9733;' : '&#9734;';
         s.style.color = parseInt(s.dataset.v) <= n ? '#f59e0b' : '';
       });
     }
@@ -2088,12 +2162,18 @@
       const qty = parseInt(document.getElementById('qty')?.textContent || 1);
       const total = (price * qty).toLocaleString();
 
+      const checkoutMethodIcon = (method) => {
+        const value = String(method || '').toLowerCase();
+        if (value.includes('mpesa')) return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M9 5h6M10 19h4"/><text x="12" y="14" text-anchor="middle" style="fill:currentColor;stroke:none;font:700 5px Arial">M</text></svg>';
+        if (value.includes('card')) return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg>';
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9h2M16 15h2"/><text x="12" y="13.5" text-anchor="middle" style="fill:currentColor;stroke:none;font:700 3px Arial">KSh</text></svg>';
+      };
+
       // Prepare fallback payment methods
       const fallbackMethods = [
         { id: 1, name: 'Cash on Delivery', description: 'Pay when item is delivered', icon: 'COD' },
         { id: 2, name: 'M-Pesa', description: 'Mobile money payment via M-Pesa', icon: 'MPESA' },
         { id: 3, name: 'Card Payment', description: 'Visa, Mastercard, and other cards', icon: 'CARD' },
-        { id: 4, name: 'Bitcoin', description: 'Cryptocurrency payment with Bitcoin', icon: 'BTC' }
       ];
 
       const renderPaymentOptions = (methods) => {
@@ -2102,7 +2182,7 @@
                onclick="selectPaymentMethod(event, '${m.name}')" class="payment-option" data-icon="${m.icon}">
             <input type="radio" name="payment-method" value="${m.name}" id="pm-${m.id}" style="margin-right:8px;margin-top:2px">
             <div style="flex:1">
-              <label for="pm-${m.id}" style="cursor:pointer;font-weight:600;display:flex;align-items:center"><span class="payment-icon">${m.icon}</span> ${m.name}</label>
+              <label for="pm-${m.id}" style="cursor:pointer;font-weight:600;display:flex;align-items:center"><span class="payment-icon">${checkoutMethodIcon(m.name)}</span> ${m.name}</label>
               <p style="font-size:12px;color:var(--muted);margin:4px 0 0 0">${m.description}</p>
             </div>
           </div>`).join('');
@@ -2217,9 +2297,9 @@
       } catch (e) { toast(e.message, 'error'); }
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  CLIENT DASHBOARD
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function showClientTab(tab) {
       document.querySelectorAll('[id^="ct-"]').forEach(e => e.classList.remove('active'));
       const el = document.getElementById(`ct-${tab}`);
@@ -2251,7 +2331,7 @@
             <td><span class="status status-${o.status}">${o.status}</span></td>
             <td style="font-size:12px;color:var(--muted)">${o.created_at?.split('T')[0] || o.created_at}</td>
             <td>${o.status === 'shipped' ? `<button class="btn btn-success btn-sm" onclick="updateOrderStatus(${o.id},'delivered',loadClientOrders)">Mark Delivered</button>` :
-            o.status === 'pending' ? `<button class="btn btn-danger btn-sm" onclick="updateOrderStatus(${o.id},'cancelled',loadClientOrders)">Cancel</button>` : 'â€“'}</td>
+            o.status === 'pending' ? `<button class="btn btn-danger btn-sm" onclick="updateOrderStatus(${o.id},'cancelled',loadClientOrders)">Cancel</button>` : '–'}</td>
           </tr>`).join('')}
         </tbody>
       </table></div>`;
@@ -2325,9 +2405,9 @@
       } catch (e) { toast(e.message, 'error'); }
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  SELLER DASHBOARD
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function showSellerTab(tab) {
       document.querySelectorAll('[id^="st-"]').forEach(e => e.classList.remove('active'));
       const el = document.getElementById(`st-${tab}`);
@@ -2359,8 +2439,8 @@
         <div class="stat-card"><div class="label">Revenue</div><div class="value" style="font-size:22px">KSh ${revenue.toLocaleString()}</div></div>
       </div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:28px">
-        <button class="btn btn-primary" onclick="showSellerTab('new-product')">âž• New Listing</button>
-        <button class="btn btn-outline" onclick="showSellerTab('listings')">ðŸ“‹ View Listings</button>
+        <button class="btn btn-primary" onclick="showSellerTab('new-product')">➕ New Listing</button>
+        <button class="btn btn-outline" onclick="showSellerTab('listings')">📋 View Listings</button>
         <button class="btn btn-outline" onclick="showSellerTab('orders')">View Orders</button>
       </div>
       <h3 style="font-size:18px;margin-bottom:12px">Recent Orders</h3>
@@ -2389,7 +2469,7 @@
         }
         container.innerHTML = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
       <h3 style="font-size:20px">My Listings</h3>
-      <button class="btn btn-primary btn-sm" onclick="showSellerTab('new-product')">âž• Add New</button>
+      <button class="btn btn-primary btn-sm" onclick="showSellerTab('new-product')">➕ Add New</button>
     </div>
     <div class="table-wrap"><table>
       <thead><tr><th>Product</th><th>Price</th><th>Stock</th><th>Status</th><th>Views</th><th>Actions</th></tr></thead>
@@ -2428,7 +2508,7 @@
             <td>KSh ${o.total_price.toLocaleString()}</td>
             <td><span class="status status-${o.status}">${o.status}</span></td>
             <td style="font-size:12px;max-width:140px;overflow:hidden;text-overflow:ellipsis">${o.shipping_address}</td>
-            <td>${o.status === 'paid' ? `<button class="btn btn-success btn-sm" onclick="sellerUpdateOrder(${o.id},'shipped')">Mark Shipped</button>` : 'â€“'}</td>
+            <td>${o.status === 'paid' ? `<button class="btn btn-success btn-sm" onclick="sellerUpdateOrder(${o.id},'shipped')">Mark Shipped</button>` : '–'}</td>
           </tr>`).join('')}
         </tbody></table></div>`;
       } catch (e) { container.innerHTML = `<p style="color:var(--red)">Error: ${e.message}</p>`; }
@@ -2514,9 +2594,9 @@
       } catch (e) { toast(e.message, 'error'); }
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  ADMIN DASHBOARD
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function showAdminTab(tab) {
       document.querySelectorAll('[id^="at-"]').forEach(e => e.classList.remove('active'));
       const el = document.getElementById(`at-${tab}`);
@@ -2677,9 +2757,9 @@
       } catch (e) { toast(e.message, 'error'); }
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  ADMIN ANALYTICS & FAQ
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     function loadScript(src) {
       return new Promise((resolve, reject) => {
         if (document.querySelector(`script[src="${src}"]`)) return resolve();
@@ -2791,11 +2871,12 @@
       } catch (e) { container.innerHTML = `<p style="color:var(--red)">Error: ${e.message}</p>`; }
     }
 
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     //  INIT
-    // â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+    // ═══════════════════════════════════════════════════════════
     renderNav();
-    navigate('home');
+    if (new URLSearchParams(window.location.search).has('reset_token')) { navigate('auth'); renderAuthPage('reset'); }
+    else navigate('home');
   </script>
 </body>
 

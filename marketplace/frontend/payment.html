@@ -387,6 +387,30 @@
             font-size: 12px;
             margin-top: 3px;
         }
+
+        /* Match the storefront's editorial light UI. */
+        :root { --bg:#f6f6f4; --surface:#fff; --surface2:#f0f0ed; --border:#e2e2de; --border2:#cfcfca; --ink:#1d1d1b; --muted:#777873; --accent:#20201e; --accent2:#4b4b46; --accent-light:#ecece8; --green:#637044; --green-light:#edf0e8; --red:#9a4d45; --red-light:#f5e9e7; --r:2px; --r2:3px; }
+        body { align-items:flex-start; padding:0; }
+        .payment-container { max-width:980px; margin:0 auto; padding:28px; background:transparent; box-shadow:none; }
+        .back-link { color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; }
+        .payment-header { text-align:left; margin:28px 0 22px; padding:0 0 18px; border-bottom:1px solid var(--border); }
+        .payment-header h1 { color:var(--ink); font-size:34px; letter-spacing:-.06em; }
+        .payment-header p { color:var(--muted); }
+        .order-summary, .detail-box { background:var(--surface); border:1px solid var(--border); border-radius:var(--r); }
+        .order-summary { padding:8px 18px; }
+        .summary-row { border-color:var(--border); }
+        .summary-row.total { color:var(--ink); border-top-color:var(--border); }
+        .detail-box { border-left:2px solid var(--ink); }
+        .method-icon { width:40px; height:40px; border-radius:50%; background:var(--accent-light); color:var(--ink); }
+        .method-icon svg, .security-icon svg, .success-icon svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+        .security-notice { background:var(--green-light); border-color:#cbd5bd; color:var(--green); border-radius:var(--r); }
+        .security-icon { background:transparent; color:var(--green); padding:0; }
+        .btn { border-radius:var(--r); text-transform:uppercase; letter-spacing:.1em; font-size:11px; }
+        .btn-primary { background:var(--ink); }
+        .btn-primary:hover:not(:disabled) { background:var(--accent2); }
+        .form-input, .form-select { background:var(--surface); border-radius:var(--r); border-color:var(--border); color:var(--ink); }
+        .success-icon { background:var(--green); }
+        @media (max-width:640px) { .payment-container { padding:18px 16px 40px; } .payment-header h1 { font-size:29px; } }
     </style>
 </head>
 
@@ -400,7 +424,7 @@
         </div>
 
         <div class="security-notice">
-            <div class="security-icon">Secure</div>
+            <div class="security-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="1"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
         </div>
 
         <div class="error-message" id="error-msg"></div>
@@ -441,7 +465,7 @@
                 <h3>Payment Method</h3>
                 <div class="detail-box">
                     <div class="payment-method-info">
-                        <div class="method-icon" id="method-icon">COD</div>
+                        <div class="method-icon" id="method-icon"></div>
                         <div>
                             <p><strong id="method-name">Cash on Delivery</strong></p>
                             <p id="method-desc" class="method-secondary">Pay when item is delivered</p>
@@ -457,7 +481,7 @@
         </div>
 
         <div class="success-message" id="success-state">
-            <div class="success-icon">✓</div>
+            <div class="success-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></div>
             <p class="success-subtitle">Your order has been placed. Redirecting to dashboard...</p>
         </div>
 
@@ -472,6 +496,13 @@
     </div>
 
     <script>
+        function paymentMethodIcon(method) {
+            const value = String(method || '').toLowerCase();
+            if (value.includes('mpesa')) return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="2"/><path d="M9 5h6M10 19h4"/><text x="12" y="14" text-anchor="middle" style="fill:currentColor;stroke:none;font:700 5px Arial">M</text></svg>';
+            if (value.includes('card')) return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/></svg>';
+            return '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 9h2M16 15h2"/><text x="12" y="13.5" text-anchor="middle" style="fill:currentColor;stroke:none;font:700 3px Arial">KSh</text></svg>';
+        }
+
         // Utility function for API calls
         async function api(method, endpoint, body = null) {
             const opts = {
@@ -546,7 +577,7 @@
                 // Populate payment method
                 document.getElementById('method-name').textContent = order.paymentMethod;
                 document.getElementById('method-desc').textContent = order.methodDescription || 'Secure payment';
-                document.getElementById('method-icon').textContent = order.methodIcon || 'CARD';
+                document.getElementById('method-icon').innerHTML = paymentMethodIcon(order.paymentMethod || order.methodIcon);
 
                 // Fetch product name
                 api('GET', `/products/${order.productId}`)
@@ -616,10 +647,6 @@
                     case 'Card Payment':
                     case 'card':
                         delay = 3000; // Card processing takes longer
-                        break;
-                    case 'Bitcoin':
-                    case 'bitcoin':
-                        delay = 3500; // Bitcoin requires confirmation
                         break;
                     default:
                         delay = 1500; // Cash on Delivery is instant

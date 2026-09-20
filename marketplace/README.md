@@ -60,6 +60,19 @@ python main.py
 
 Open: **http://localhost:8000**
 
+## Docker / Fly.io deployment
+
+From this directory, build and run the app with a persistent local data volume:
+
+```bash
+docker build -t bazaar-app .
+docker run --rm -p 8000:8000 -v "$(pwd)/data:/data" bazaar-app
+```
+
+The container stores SQLite at `/data/bazaar.db`. The included `fly.toml` mounts
+the same path to a Fly volume. Set `SECRET_KEY`, `ADMIN_EMAIL`, and
+`ADMIN_PASSWORD` as secrets before deploying; do not commit `.env` files.
+
 ---
 
 ## 🔐 Administrator setup
@@ -72,7 +85,16 @@ SECRET_KEY=<random value of at least 32 characters>
 ADMIN_EMAIL=admin@example.com
 ADMIN_PASSWORD=<strong unique password>
 ALLOWED_ORIGINS=http://localhost:8000
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USERNAME=your-smtp-username
+SMTP_PASSWORD=your-smtp-password
+SMTP_FROM=no-reply@example.com
+SMTP_USE_TLS=true
+PASSWORD_RESET_URL=http://127.0.0.1:8000
 ```
+
+Password reset uses a single-use link that expires after 30 minutes. Configure an SMTP provider before using the “Forgot password?” link. For Gmail, use an App Password rather than your normal account password.
 
 For production, serve the frontend and API over HTTPS and set `ALLOWED_ORIGINS` to the exact trusted origins.
 

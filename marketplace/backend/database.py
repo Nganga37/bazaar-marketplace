@@ -2,7 +2,11 @@ import os
 import sqlite3
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DB_PATH = os.path.join(BASE_DIR, "marketplace.db")
+DB_PATH = os.getenv("DATABASE_PATH", os.path.join(BASE_DIR, "marketplace.db"))
+
+# SQLite cannot create its database until the parent directory exists. This is
+# especially important when DATABASE_PATH points at a mounted container volume.
+os.makedirs(os.path.dirname(os.path.abspath(DB_PATH)), exist_ok=True)
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
@@ -185,9 +189,9 @@ def init_db():
 
     # Insert default payment methods if not exist
     payment_methods = [
-        ("Cash on Delivery", "Pay when item is delivered", "ðŸ’µ", 1),
-        ("M-Pesa", "Mobile money payment via M-Pesa", "ðŸ“±", 1),
-        ("Card Payment", "Visa, Mastercard, and other cards", "ðŸ’³", 1),
+        ("Cash on Delivery", "Pay when item is delivered", "💵", 1),
+        ("M-Pesa", "Mobile money payment via M-Pesa", "📱", 1),
+        ("Card Payment", "Visa, Mastercard, and other cards", "💳", 1),
     ]
     existing_methods = {row[0] for row in c.execute("SELECT name FROM payment_methods").fetchall()}
     for method_name, desc, icon, is_active in payment_methods:

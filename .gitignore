@@ -14,6 +14,9 @@ env/
 .env
 .env.*
 
+# Local application data
+marketplace/data/
+
 # IDE / OS
 .vscode/
 .idea/
